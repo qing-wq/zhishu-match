@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/context/ReqInfoContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/exception/BusinessException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/exception/ForumExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/exception/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/exception/StatusEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/filter/BodyReaderHttpServletRequestWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/filter/GlobalFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/filter/GlobalInitHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/service/user/converter/UserConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/service/user/repo/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/service/user/repo/entity/UserDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/service/user/repo/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/service/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/service/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/utils/CrossUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/utils/JsonUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/utils/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/utils/SessionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/utils/SpringUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/vo/base/BaseDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/vo/base/BaseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/vo/dto/BaseUserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/vo/res/ResVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserInfoMapper.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2WrwKtGArTCzStebW7Mba3YLDKd" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/qing/MyDocument/code/cloud-project/project-demo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.build.tools.auto.reload": "ALL",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="" />
+      <created>1697503946237</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697503946237</updated>
+      <workItem from="1697503947517" duration="644000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

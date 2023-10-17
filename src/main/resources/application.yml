@@ -1,0 +1,26 @@
+server:
+  port: 8000
+  servlet:
+    session:
+      timeout: 5m # 设置session的有效期为五分钟
+  address: 0.0.0.0
+
+spring:
+  main:
+    allow-circular-references: true
+  config:
+    import: application-dal.yaml.yml
+
+database:
+  name:
+
+jwt:
+  key: secret-key
+
+security:
+  salt: salt-key
+  salt-index: 2
+
+logging:
+  level:
+    root: info
