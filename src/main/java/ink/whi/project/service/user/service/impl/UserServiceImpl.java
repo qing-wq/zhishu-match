@@ -22,4 +22,9 @@ public class UserServiceImpl implements UserService {
         UserDO user = userDao.getById(userId);
         return UserConverter.toDTO(user);
     }
+
+    @Override
+    public BaseUserDTO passwordLogin(String username, String password) {
+        return userDao.getByUserNameAndPwd(username, password);
+    }
 }

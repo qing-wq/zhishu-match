@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Component
 public class GlobalInitHelper {
-    private static final String SESSION_KEY = "sai-session";
+    public static final String SESSION_KEY = "sai-session";
 
     @Autowired
     private UserService userService;

@@ -8,4 +8,6 @@ import ink.whi.project.vo.dto.BaseUserDTO;
  */
 public interface UserService {
     BaseUserDTO queryBasicUserInfo(Long userId);
+
+    BaseUserDTO passwordLogin(String username, String password);
 }

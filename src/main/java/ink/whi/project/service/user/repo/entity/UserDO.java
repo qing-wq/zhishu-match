@@ -29,5 +29,4 @@ public class UserDO extends BaseDO {
      * 删除标记
      */
     private Integer deleted;
-
 }
