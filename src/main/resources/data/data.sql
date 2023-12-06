@@ -10,10 +10,11 @@ create table `zhishu-match`.user
     password    varchar(128) default ''                not null comment '密码',
     deleted     tinyint      default 0                 not null comment '是否删除',
     create_time timestamp    default CURRENT_TIMESTAMP not null comment '创建时间',
-    update_time timestamp    default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
+    update_time timestamp    default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间',
+    constraint uk_account
+        unique (account)
 )
-    comment '用户登录表' engine = InnoDB
-                         collate = utf8mb4_general_ci;
+    comment '用户登录表' collate = utf8mb4_general_ci;
 
 create table `zhishu-match`.user_info
 (
