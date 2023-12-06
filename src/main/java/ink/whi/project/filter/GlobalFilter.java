@@ -1,7 +1,7 @@
 package ink.whi.project.filter;
 
-import ink.whi.project.context.ReqInfoContext;
-import ink.whi.project.utils.CrossUtil;
+import ink.whi.project.common.context.ReqInfoContext;
+import ink.whi.project.common.utils.CrossUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

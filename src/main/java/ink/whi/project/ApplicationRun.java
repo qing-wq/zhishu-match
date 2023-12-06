@@ -1,11 +1,19 @@
 package ink.whi.project;
 
-/**
- * @author: qing
- * @Date: 2023/10/16
- */
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableAsync;
+
+@EnableAsync
+@EnableCaching
+@EnableRabbit
+@ServletComponentScan
+@SpringBootApplication
 public class ApplicationRun {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        new SpringApplicationBuilder(ApplicationRun.class).allowCircularReferences(true).run(args);
     }
 }
