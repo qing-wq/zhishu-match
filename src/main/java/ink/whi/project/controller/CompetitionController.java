@@ -7,19 +7,20 @@ import ink.whi.project.common.domain.req.CompetitionUpdReq;
 import ink.whi.project.common.domain.vo.ResVo;
 import ink.whi.project.controller.base.BaseRestController;
 import ink.whi.project.modules.competition.repo.entity.CompetitionDO;
+import ink.whi.project.modules.competition.repo.mapper.CompetitionMapper;
 import ink.whi.project.modules.competition.service.CompetitionService;
-import org.apache.ibatis.annotations.Delete;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * @Description
  * @Author chenyi0008
  * @Date 2023/12/7
  */
+@Slf4j
 @RestController
 @RequestMapping("/competition")
 public class CompetitionController extends BaseRestController {
@@ -30,6 +31,7 @@ public class CompetitionController extends BaseRestController {
     @PostMapping
     public ResVo create(@Validated @RequestBody CompetitionSaveReq req){
         CompetitionDO competitionDO = new CompetitionDO();
+        BeanUtils.copyProperties(req, competitionDO);
         boolean save = competitionService.save(competitionDO);
         if(save){
             return ResVo.ok("添加成功");
@@ -41,7 +43,8 @@ public class CompetitionController extends BaseRestController {
 
     @GetMapping
     public ResVo<PageVo<CompetitionDO>> list(@RequestParam(name = "page", required = false) Long page,
-                      @RequestParam(name = "pageSize", required = false) Long pageSize){
+                                             @RequestParam(name = "pageSize", required = false) Long pageSize){
+
         PageParam pageParam = buildPageParam(page, pageSize);
         PageVo<CompetitionDO> list = competitionService.list(pageParam);
         return ResVo.ok(list);
@@ -49,7 +52,6 @@ public class CompetitionController extends BaseRestController {
 
     @PutMapping
     public ResVo update(@Validated @RequestBody CompetitionUpdReq req){
-        CompetitionDO competitionDO = new CompetitionDO();
         boolean update = competitionService.update(req);
         if(update){
             return ResVo.ok("更新成功");

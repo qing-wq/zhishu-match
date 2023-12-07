@@ -19,7 +19,7 @@ public class CompetitionUpdReq {
      */
     @NotNull
     @Min(1)
-    private Long Id;
+    private Long id;
 
     /**
      * 比赛名称

@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableRabbit
 @ServletComponentScan
 @SpringBootApplication
-@MapperScan
+@MapperScan(basePackages = "ink.whi.project.modules.**.repo")
 public class ApplicationRun {
     public static void main(String[] args) {
         new SpringApplicationBuilder(ApplicationRun.class).allowCircularReferences(true).run(args);

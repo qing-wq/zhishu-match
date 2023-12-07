@@ -8,6 +8,7 @@ server:
 spring:
   main:
     allow-circular-references: true
+    lazy-initialization: true
   config:
     import: application-dal.yaml
 
@@ -20,3 +21,7 @@ jwt:
 logging:
   level:
     root: info
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
