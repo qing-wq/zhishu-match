@@ -18,8 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableRabbit
 @ServletComponentScan
 @SpringBootApplication
-@MapperScan(basePackages = {"ink.whi.project.modules.user.repo",
-        "ink.whi.project.modules.announcement.repo"})
+@MapperScan(basePackages = "ink.whi.project.modules.**.repo")
 @EnableAspectJAutoProxy
 public class ApplicationRun implements WebMvcConfigurer {
 
