@@ -1,5 +1,7 @@
 package ink.whi.project.controller;
 
+import ink.whi.project.common.annotition.limit.Limit;
+import ink.whi.project.common.annotition.limit.LimitType;
 import ink.whi.project.common.annotition.permission.Permission;
 import ink.whi.project.common.annotition.permission.UserRole;
 import ink.whi.project.common.domain.req.UserSaveReq;
@@ -104,6 +106,7 @@ public class LoginRestController {
      * @param email
      * @return
      */
+    @Limit(key = "email", limitType = LimitType.IP, count = 1, period = 60)
     @PostMapping(path = "code")
     public ResVo<String> code(@RequestParam("email") String email) {
         String code = loginHelper.subscribe(email);

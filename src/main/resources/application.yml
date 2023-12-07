@@ -9,7 +9,7 @@ spring:
   main:
     allow-circular-references: true
   config:
-    import: application-dal.yaml
+    import: application-dal.yaml, application-email.yaml
 
 database:
   name: zhishu-match

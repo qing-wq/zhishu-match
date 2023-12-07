@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 用户模块搭建，接口限流配置">
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 更新配置">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application-email.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/annotition/limit/AccessLimit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/aspect/LimitAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/aspect/LimitAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/LoginRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/LoginRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +53,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/qing/MyDocuments/code/ideaProject/zhishu-match/src/main/java/ink/whi/project/common",
+    "last_opened_file_path": "/Users/qing/MyDocuments/code/ideaProject/zhishu-match/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -69,6 +74,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java/ink/whi/project/common" />
       <recent name="$PROJECT_DIR$/src/main/java/ink/whi/project/common/annotition" />
     </key>
@@ -106,7 +112,7 @@
       <workItem from="1701757834190" duration="3555000" />
       <workItem from="1701761523492" duration="5248000" />
       <workItem from="1701776050780" duration="8523000" />
-      <workItem from="1701845504470" duration="15481000" />
+      <workItem from="1701845504470" duration="20889000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -132,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701963124206</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: 更新配置">
+      <option name="closed" value="true" />
+      <created>1701963646936</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701963646936</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,7 +167,8 @@
     <MESSAGE value="init" />
     <MESSAGE value="用户模块搭建，接口限流配置" />
     <MESSAGE value="feat: 用户模块搭建，接口限流配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 用户模块搭建，接口限流配置" />
+    <MESSAGE value="feat: 更新配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 更新配置" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
