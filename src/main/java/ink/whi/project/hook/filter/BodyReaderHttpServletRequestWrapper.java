@@ -1,4 +1,4 @@
-package ink.whi.project.filter;
+package ink.whi.project.hook.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

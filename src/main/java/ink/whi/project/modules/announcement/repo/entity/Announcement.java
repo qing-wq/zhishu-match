@@ -1,5 +1,6 @@
 package ink.whi.project.modules.announcement.repo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import ink.whi.project.common.domain.base.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,6 +13,7 @@ import java.io.Serial;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@TableName("announcement")
 public class Announcement extends BaseDO {
     @Serial
     private static final long serialVersionUID = 7340460936934717221L;

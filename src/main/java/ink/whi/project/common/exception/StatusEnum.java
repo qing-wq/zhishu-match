@@ -41,7 +41,10 @@ public enum StatusEnum {
     // token异常
     JWT_VERIFY_EXISTS(500_400_001, "token校验异常"),
     TOKEN_NOT_EXISTS(500_403_002, "token不存在"),
-    TOKEN_CREATE_EXISTS(500_500_003, "token创建异常")
+    TOKEN_CREATE_EXISTS(500_500_003, "token创建异常"),
+
+    // 限流
+    ACCESS_FREQUENT(600_429_001, "访问过于频繁")
     ;
 
     private int code;
