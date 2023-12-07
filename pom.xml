@@ -34,6 +34,7 @@
         <ip2region.version>2.6.6</ip2region.version>
         <hutool-all.version>5.8.15</hutool-all.version>
         <rabbitmq.version>5.9.0</rabbitmq.version>
+        <log4jdbc.version>1.16</log4jdbc.version>
     </properties>
 
     <dependencies>
@@ -120,6 +121,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!--Mybatis-Plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -155,8 +160,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>
