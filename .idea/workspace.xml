@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/annotition/limit/AccessLimit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/annotition/limit/Limit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/annotition/limit/LimitType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/aspect/LimitAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/IpUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/hook/interceptor/AuthInterceptor.java" afterDir="false" />
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 用户模块搭建，接口限流配置">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/StatusEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/StatusEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/filter/BodyReaderHttpServletRequestWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/hook/filter/BodyReaderHttpServletRequestWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/filter/GlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/hook/filter/GlobalFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/filter/GlobalInitHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/hook/filter/GlobalInitHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/annotition/limit/AccessLimit.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +106,7 @@
       <workItem from="1701757834190" duration="3555000" />
       <workItem from="1701761523492" duration="5248000" />
       <workItem from="1701776050780" duration="8523000" />
-      <workItem from="1701845504470" duration="14822000" />
+      <workItem from="1701845504470" duration="15481000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -136,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701938332034</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: 用户模块搭建，接口限流配置">
+      <option name="closed" value="true" />
+      <created>1701963124206</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701963124206</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,7 +151,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="用户模块搭建，接口限流配置" />
+    <MESSAGE value="feat: 用户模块搭建，接口限流配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 用户模块搭建，接口限流配置" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
