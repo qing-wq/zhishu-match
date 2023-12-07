@@ -10,4 +10,5 @@ import ink.whi.project.modules.rank.repo.entity.RankDO;
  * @Date 2023/12/7
  */
 public interface CompetitionMapper extends BaseMapper<CompetitionDO> {
+
 }
