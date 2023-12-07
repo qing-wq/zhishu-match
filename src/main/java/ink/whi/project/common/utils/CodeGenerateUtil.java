@@ -14,6 +14,6 @@ public class CodeGenerateUtil {
      */
     public static String genCode() {
         Random random = new Random();
-        return String.valueOf(random.nextLong(9000) + 1000);
+        return String.valueOf(random.nextInt(9000) + 1000);
     }
 }

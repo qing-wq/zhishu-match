@@ -11,7 +11,7 @@ import java.io.Serial;
  * 用户个人信息表
  *
  * @author qing
- * @date 2023/4/26
+ * @date 2023/12/6
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
