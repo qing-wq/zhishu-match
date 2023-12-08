@@ -29,6 +29,16 @@ public interface RankMapper extends BaseMapper<RankDO> {
             "ORDER BY score DESC")
     List<RankUserDTO> getRankWithUserInfo(Long competitionId,  RowBounds rowBounds);
 
+    @Select("SELECT COUNT(*) FROM (" +
+            "  SELECT r.user_id " +
+            "  FROM (" +
+            "    SELECT user_id, MAX(score) as score " +
+            "    FROM `rank` " +
+            "    WHERE competition_id = #{competitionId} AND `status` = 'succeed' " +
+            "    GROUP BY user_id" +
+            "  ) AS r" +
+            ") AS r")
+    Integer getRankWithUserInfoCount(Long competitionId);
 
 
 

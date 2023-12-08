@@ -15,4 +15,6 @@ public interface RankService {
 
     public List<RankUserDTO> getRankWithUserInfo(Long competitionId, Integer page, Integer pageSize);
 
+    public Integer getRankWithUserInfoCount(Long competitionId);
+
 }

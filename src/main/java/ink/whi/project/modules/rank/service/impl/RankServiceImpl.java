@@ -25,4 +25,9 @@ public class RankServiceImpl implements RankService {
 
         return mapper.getRankWithUserInfo(competitionId, new RowBounds((page - 1) * pageSize, pageSize));
     }
+
+    @Override
+    public Integer getRankWithUserInfoCount(Long competitionId) {
+        return mapper.getRankWithUserInfoCount(competitionId);
+    }
 }
