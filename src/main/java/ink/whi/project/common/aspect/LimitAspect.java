@@ -7,6 +7,7 @@ import ink.whi.project.common.context.ReqInfoContext;
 import ink.whi.project.common.exception.BusinessException;
 import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.common.utils.IpUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -15,6 +16,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -34,11 +38,11 @@ import java.util.Objects;
 @Component
 public class LimitAspect {
 
-    private final RedisTemplate<Object, Object> redisTemplate;
+    private final StringRedisTemplate redisTemplate;
     private static final Logger logger = LoggerFactory.getLogger(LimitAspect.class);
     private static final String PREFIX = "LIMIT_";
 
-    public LimitAspect(RedisTemplate<Object, Object> redisTemplate) {
+    public LimitAspect(StringRedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
@@ -56,12 +60,12 @@ public class LimitAspect {
 
         String key = getCombinKey(limit, signatureMethod, request);
 
-        ImmutableList<Object> keys = ImmutableList.of(key);
+        List<String> keys = Collections.singletonList(key);
 
         String luaScript = buildLuaScript();
-        RedisScript<Number> redisScript = new DefaultRedisScript<>(luaScript, Number.class);
+        RedisScript<Long> redisScript = new DefaultRedisScript<>(luaScript, Long.class);
 
-        Number count = redisTemplate.execute(redisScript, keys, limit.count(), limit.period());
+        Long count = redisTemplate.execute(redisScript, keys, String.valueOf(limit.count()), String.valueOf(limit.period()));
         if (null != count && count.intValue() <= limit.count()) {
             logger.info("第{}次访问key为 {}，描述为 [{}] 的接口", count, keys, limit.name());
             return point.proceed();
@@ -97,15 +101,21 @@ public class LimitAspect {
      * 限流脚本
      */
     private String buildLuaScript() {
-        return "local c" +
-                "\nc = redis.call('get',KEYS[1])" +
-                "\nif c and tonumber(c) > tonumber(ARGV[1]) then" +
-                "\nreturn c;" +
-                "\nend" +
-                "\nc = redis.call('incr',KEYS[1])" +
-                "\nif tonumber(c) == 1 then" +
-                "\nredis.call('expire',KEYS[1],ARGV[2])" +
-                "\nend" +
-                "\nreturn c;";
+        return """
+                local key = KEYS[1]
+                local limitCount = tonumber(ARGV[1])
+                local limitTime = tonumber(ARGV[2])
+                
+                local currentCount = redis.call('get',key)
+                if type(currentCount) == "number" and tonumber(currentCount) > limitCount then
+                    return tonumber(currentCount)
+                end
+                
+                currentCount = redis.call("incr",key)
+                if tonumber(currentCount) == 1 then
+                    redis.call('expire',key,limitTime)
+                end
+                return tonumber(currentCount)
+                """;
     }
 }

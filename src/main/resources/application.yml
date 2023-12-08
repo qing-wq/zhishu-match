@@ -10,7 +10,7 @@ spring:
     allow-circular-references: true
     lazy-initialization: true
   config:
-    import: application-dal.yaml
+    import: application-dal.yaml, application-email.yaml
 
 database:
   name: zhishu-match
