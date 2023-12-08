@@ -14,6 +14,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RankDao extends ServiceImpl<RankMapper, RankDO> {
 
-//    @Select("select * from ")
 
 }
