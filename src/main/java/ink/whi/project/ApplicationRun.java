@@ -2,7 +2,6 @@ package ink.whi.project;
 
 import ink.whi.project.hook.interceptor.AuthInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -15,7 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableAsync
 @EnableCaching
-@EnableRabbit
 @ServletComponentScan
 @SpringBootApplication
 @MapperScan(basePackages = "ink.whi.project.modules.**.repo")

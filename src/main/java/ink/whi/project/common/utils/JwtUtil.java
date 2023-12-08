@@ -2,7 +2,7 @@ package ink.whi.project.common.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import ink.whi.project.common.properties.JwtConfigProperties;
+import ink.whi.project.common.config.properties.JwtConfigProperties;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +28,7 @@ public class JwtUtil {
      * @return
      */
     public static String createToken(Long userId) {
-        Algorithm algorithm = Algorithm.HMAC256(SpringUtil.getConfig("jwt.key"));
+        Algorithm algorithm = Algorithm.HMAC256(JwtConfigProperties.key);
         return JWT.create()
                 .withSubject(Long.toString(userId))
                 .withIssuedAt(new Date(System.currentTimeMillis()))

@@ -4,6 +4,7 @@ import ink.whi.project.common.annotition.limit.Limit;
 import ink.whi.project.common.annotition.limit.LimitType;
 import ink.whi.project.common.annotition.permission.Permission;
 import ink.whi.project.common.annotition.permission.UserRole;
+import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.req.UserSaveReq;
 import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.controller.helper.LoginHelper;
@@ -44,14 +45,14 @@ public class LoginRestController {
      * @return
      */
     @PostMapping(path = "login")
-    public ResVo<BaseUserDTO> login(HttpServletRequest request,
+    public ResVo<BaseUserInfoDTO> login(HttpServletRequest request,
                                     HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             return ResVo.fail(StatusEnum.ILLEGAL_ARGUMENTS_MIXED, "用户名或密码不能为空");
         }
-        BaseUserDTO info = userService.passwordLogin(username, password);
+        BaseUserInfoDTO info = userService.passwordLogin(username, password);
         // 签发token
         String token = JwtUtil.createToken(info.getUserId());
         if (StringUtils.isNotBlank(token)) {

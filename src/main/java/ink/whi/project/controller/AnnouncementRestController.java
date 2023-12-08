@@ -8,9 +8,11 @@ import ink.whi.project.common.domain.page.PageParam;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.req.AnnouncementReq;
 import ink.whi.project.common.domain.vo.ResVo;
+import ink.whi.project.common.utils.SpringUtil;
 import ink.whi.project.controller.base.BaseRestController;
 import ink.whi.project.modules.announcement.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 /**

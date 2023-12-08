@@ -1,6 +1,7 @@
 package ink.whi.project.common.context;
 
 import ink.whi.project.common.domain.dto.BaseUserDTO;
+import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import lombok.Data;
 
 /**
@@ -24,7 +25,7 @@ public class ReqInfoContext {
 
     public static ReqInfo getReqInfo() {
         ReqInfo reqInfo = contexts.get();
-            return reqInfo;
+        return reqInfo;
     }
 
     @Data
@@ -57,7 +58,7 @@ public class ReqInfoContext {
         /**
          * 用户信息
          */
-        private BaseUserDTO user;
+        private BaseUserInfoDTO user;
         /**
          * 消息数量
          */

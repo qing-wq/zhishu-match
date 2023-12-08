@@ -1,6 +1,7 @@
 package ink.whi.project.hook.filter;
 
 import ink.whi.project.common.context.ReqInfoContext;
+import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.exception.BusinessException;
 import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.modules.user.service.UserService;
@@ -44,7 +45,7 @@ public class GlobalInitHelper {
         }
         for (Cookie cookie : request.getCookies()) {
             if (SESSION_KEY.equalsIgnoreCase(cookie.getName())) {
-                BaseUserDTO user = VerifyToken(cookie.getValue(), response);
+                BaseUserInfoDTO user = VerifyToken(cookie.getValue(), response);
                 if (user != null) {
                     reqInfo.setUserId(user.getUserId());
                     reqInfo.setUser(user);
@@ -59,12 +60,12 @@ public class GlobalInitHelper {
      * @param token
      * @param response
      */
-    private BaseUserDTO VerifyToken(String token, HttpServletResponse response) {
+    private BaseUserInfoDTO VerifyToken(String token, HttpServletResponse response) {
         if (StringUtils.isBlank(token)) {
             return null;
         }
         Long userId = JwtUtil.isVerify(token);
-        BaseUserDTO user = userService.queryBasicUserInfo(userId);
+        BaseUserInfoDTO user = userService.queryBasicUserInfo(userId);
         if (user == null) {
             throw BusinessException.newInstance(StatusEnum.JWT_VERIFY_EXISTS);
         }

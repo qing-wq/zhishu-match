@@ -113,7 +113,7 @@ public class LimitAspect {
                 
                 currentCount = redis.call("incr",key)
                 if tonumber(currentCount) == 1 then
-                    redis.call('expire',key,limitTime)
+                    redis.call("expire",key,limitTime)
                 end
                 return tonumber(currentCount)
                 """;

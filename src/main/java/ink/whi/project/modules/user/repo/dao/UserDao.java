@@ -36,4 +36,10 @@ public class UserDao extends ServiceImpl<UserInfoMapper, UserInfoDO> {
             userMapper.updateById(user);
         }
     }
+
+    public UserInfoDO getByUserId(Long userId) {
+        return lambdaQuery().eq(UserInfoDO::getUserId, userId)
+                .eq(UserInfoDO::getDeleted, YesOrNoEnum.NO.getCode())
+                .one();
+    }
 }

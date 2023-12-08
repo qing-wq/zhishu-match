@@ -8,20 +8,16 @@ server:
 spring:
   main:
     allow-circular-references: true
-    lazy-initialization: true
   config:
     import: application-dal.yaml, application-email.yaml
 
 database:
   name: zhishu-match
 
-jwt:
-  key: secret-key
+security:
+  jwt:
+    key: "secret_key"
 
 logging:
   level:
     root: info
-
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

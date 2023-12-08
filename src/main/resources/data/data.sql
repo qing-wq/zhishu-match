@@ -55,4 +55,14 @@ create table `zhishu-match`.announcement
 )
     comment '公告表';
 
-
+create table `zhishu-match`.team
+(
+    id          int unsigned auto_increment comment '业务id'
+        primary key,
+    name        varchar(60) default ''                not null comment '团队名称',
+    captain     int         default 0                 not null comment '队长id',
+    deleted     tinyint     default 0                 not null comment '是否删除',
+    create_time timestamp   default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
+)
+    comment '团队表';
