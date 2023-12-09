@@ -24,7 +24,6 @@ public class UserDao extends ServiceImpl<UserInfoMapper, UserInfoDO> {
     public UserDO getUserByName(String username) {
         LambdaQueryWrapper<UserDO> query = Wrappers.lambdaQuery();
         query.eq(UserDO::getAccount, username)
-                .or()
                 .eq(UserDO::getDeleted, YesOrNoEnum.NO.getCode());
         return userMapper.selectOne(query);
     }

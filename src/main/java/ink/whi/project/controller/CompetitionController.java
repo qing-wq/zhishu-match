@@ -19,19 +19,26 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 比赛接口
  * @Description
  * @Author chenyi0008
  * @Date 2023/12/7
  */
 @Slf4j
 @RestController
-@RequestMapping("/competition")
+@RequestMapping("competition")
 public class CompetitionController extends BaseRestController {
+
     @Autowired
     private CompetitionService competitionService;
 
+    /**
+     * 创建比赛
+     * @param req
+     * @return
+     */
     @Permission(role = UserRole.ADMIN)
-    @PostMapping
+    @PostMapping("create")
     public ResVo<String> create(@Validated @RequestBody CompetitionSaveReq req){
         CompetitionDO competitionDO = new CompetitionDO();
         BeanUtils.copyProperties(req, competitionDO);
@@ -43,7 +50,12 @@ public class CompetitionController extends BaseRestController {
         }
     }
 
-
+    /**
+     * 查询比赛列表
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @GetMapping
     public ResVo<PageVo<CompetitionDO>> list(@RequestParam(name = "page", required = false) Long page,
                                              @RequestParam(name = "pageSize", required = false) Long pageSize){
@@ -53,6 +65,11 @@ public class CompetitionController extends BaseRestController {
         return ResVo.ok(list);
     }
 
+    /**
+     * 更新比赛
+     * @param req
+     * @return
+     */
     @PutMapping
     public ResVo update(@Validated @RequestBody CompetitionUpdReq req){
         boolean update = competitionService.update(req);
@@ -63,6 +80,11 @@ public class CompetitionController extends BaseRestController {
         }
     }
 
+    /**
+     * 删除比赛
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     public ResVo delete(@PathVariable("id") Long id){
         boolean delete = competitionService.delete(id);
