@@ -24,7 +24,6 @@ public class UserDao extends ServiceImpl<UserInfoMapper, UserInfoDO> {
     public UserDO getUserByName(String username) {
         LambdaQueryWrapper<UserDO> query = Wrappers.lambdaQuery();
         query.eq(UserDO::getAccount, username)
-                .or()
                 .eq(UserDO::getDeleted, YesOrNoEnum.NO.getCode());
         return userMapper.selectOne(query);
     }
@@ -35,5 +34,11 @@ public class UserDao extends ServiceImpl<UserInfoMapper, UserInfoDO> {
         } else {
             userMapper.updateById(user);
         }
+    }
+
+    public UserInfoDO getByUserId(Long userId) {
+        return lambdaQuery().eq(UserInfoDO::getUserId, userId)
+                .eq(UserInfoDO::getDeleted, YesOrNoEnum.NO.getCode())
+                .one();
     }
 }

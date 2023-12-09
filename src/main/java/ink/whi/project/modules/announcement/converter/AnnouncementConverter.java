@@ -23,7 +23,7 @@ public class AnnouncementConverter {
         announcement.setContent(req.getContent());
         announcement.setSummary(req.getSummary());
         announcement.setUserId(ReqInfoContext.getReqInfo().getUserId());
-        announcement.setStatus(PushStatusEnum.formCode(req.getStatus()).getCode());
+        announcement.setStatus(req.getStatus() == null ? PushStatusEnum.OFFLINE.getCode() :PushStatusEnum.formCode(req.getStatus()).getCode());
         return announcement;
     }
 

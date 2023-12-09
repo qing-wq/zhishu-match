@@ -29,6 +29,7 @@ public enum StatusEnum {
 
     // 全局，数据不存在
     RECORDS_NOT_EXISTS(100_404_001, "记录不存在:%s"),
+    RECORDS_ALREADY_EXISTS(100_404_001, "记录已存在:%s"),
 
     // 系统异常
     UNEXPECT_ERROR(100_500_001, "非预期异常:%s"),

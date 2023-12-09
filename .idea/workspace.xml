@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="ALL" />
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="init">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionSaveReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionSaveReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionUpdReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionUpdReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/zhishu-match.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/zhishu-match.sql" afterDir="false" />
-    </list>
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 更新配置" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="REBUILD_ON_DEPENDENCY_CHANGE" value="false" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -28,6 +27,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2WrwKtGArTCzStebW7Mba3YLDKd" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -36,36 +38,74 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/qing/MyDocuments/code/ideaProject/zhishu-match/src/main/test/java/ink.whi.project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.14053535",
+    "project.structure.side.proportion": "0.3222486",
+    "settings.build.tools.auto.reload": "SELECTIVE",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/test/java/ink.whi.project" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java/ink/whi/project/common" />
       <recent name="$PROJECT_DIR$/src/main/java/ink/whi/project/common/annotition" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/main/test/java" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="ink.whi.project.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ink.whi.project.common.enums" />
+      <recent name="ink.whi.project.common.domain.dto" />
       <recent name="ink.whi.project.common.utils" />
       <recent name="ink.whi.project.common.aspect" />
       <recent name="ink.whi.project.common.annotition.limit" />
-      <recent name="ink.whi.project.hook.interceptor" />
-      <recent name="ink.whi.project.common.annotition.permission" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ApplicationRun">
-    <configuration name="ApplicationRun (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="zhishu-match" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ink.whi.project.ApplicationRun" />
+  <component name="RunManager" selected="JUnit.MyTest.test">
+    <configuration name="MyTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ink.whi.project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ink.whi.project" />
+      <option name="MAIN_CLASS_NAME" value="ink.whi.project.MyTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -73,11 +113,19 @@
     <configuration name="ApplicationRun" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="project-demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ink.whi.project.ApplicationRun" />
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.MyTest.test" />
+      <item itemvalue="Spring Boot.ApplicationRun" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MyTest.test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -93,7 +141,6 @@
       <workItem from="1701761523492" duration="5248000" />
       <workItem from="1701776050780" duration="8523000" />
       <workItem from="1701845504470" duration="20889000" />
-      <workItem from="1702115253832" duration="3199000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -127,7 +174,39 @@
       <option name="project" value="LOCAL" />
       <updated>1701963646936</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix: 修复lua脚本异常">
+      <option name="closed" value="true" />
+      <created>1701969163609</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701969163609</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: 用户信息完善">
+      <option name="closed" value="true" />
+      <created>1702038792202</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702038792202</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: 团队模块搭建">
+      <option name="closed" value="true" />
+      <created>1702095077644</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702095077644</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: 完善组队信息">
+      <option name="closed" value="true" />
+      <created>1702118046181</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702118046181</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +228,11 @@
     <MESSAGE value="用户模块搭建，接口限流配置" />
     <MESSAGE value="feat: 用户模块搭建，接口限流配置" />
     <MESSAGE value="feat: 更新配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 更新配置" />
+    <MESSAGE value="fix: 修复lua脚本异常" />
+    <MESSAGE value="feat: 用户信息完善" />
+    <MESSAGE value="feat: 团队模块搭建" />
+    <MESSAGE value="feat: 完善组队信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 完善组队信息" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

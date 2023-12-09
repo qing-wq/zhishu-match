@@ -1,4 +1,4 @@
-package ink.whi.project.common.properties;
+package ink.whi.project.common.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

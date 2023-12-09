@@ -1,6 +1,6 @@
 package ink.whi.project.modules.user.service;
 
-import ink.whi.project.common.domain.dto.BaseUserDTO;
+import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.req.UserSaveReq;
 
 /**
@@ -8,9 +8,9 @@ import ink.whi.project.common.domain.req.UserSaveReq;
  * @Date: 2023/4/26
  */
 public interface UserService {
-    BaseUserDTO queryBasicUserInfo(Long userId);
+    BaseUserInfoDTO queryBasicUserInfo(Long userId);
 
-    BaseUserDTO passwordLogin(String username, String password);
+    BaseUserInfoDTO passwordLogin(String username, String password);
 
     Long saveUser(UserSaveReq req);
 }

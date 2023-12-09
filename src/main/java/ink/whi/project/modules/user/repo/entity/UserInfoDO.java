@@ -47,11 +47,6 @@ public class UserInfoDO extends BaseDO {
     private String college;
 
     /**
-     * 邮箱
-     */
-    private String email;
-
-    /**
      * 专业
      */
     private String major;
