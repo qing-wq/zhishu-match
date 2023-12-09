@@ -22,7 +22,13 @@ public class RegisterDao extends ServiceImpl<RegisterMapper, RegisterDO> {
                 .eq(RegisterDO::getCompetitionId, competitionId)
                 .eq(RegisterDO::getDeleted, YesOrNoEnum.NO.getCode())
                 .list();
-        System.out.println(list);
-        return null;
+        return list.stream().map(RegisterDO::getUserId).toList();
+    }
+
+    public RegisterDO getRecord(Long userId, Long competitionId) {
+        return lambdaQuery().eq(RegisterDO::getUserId, userId)
+                .eq(RegisterDO::getCompetitionId, competitionId)
+                .eq(RegisterDO::getDeleted, YesOrNoEnum.NO.getCode())
+                .one();
     }
 }

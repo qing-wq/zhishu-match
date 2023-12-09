@@ -15,6 +15,10 @@ import ink.whi.project.modules.competition.repo.entity.CompetitionDO;
 import ink.whi.project.modules.competition.repo.entity.RegisterDO;
 import ink.whi.project.modules.competition.repo.mapper.CompetitionMapper;
 import ink.whi.project.modules.competition.service.CompetitionService;
+import ink.whi.project.modules.user.converter.UserConverter;
+import ink.whi.project.modules.user.repo.dao.UserDao;
+import ink.whi.project.modules.user.repo.entity.UserInfoDO;
+import ink.whi.project.modules.user.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +38,9 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
 
     @Autowired
     private RegisterDao registerDao;
+
+    @Autowired
+    private UserDao userDao;
 
     /**
      * 分页查询
@@ -101,15 +108,21 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
 
         // todo: 判断比赛是否截止
 
-        registerDao.getRegisterByUserIdAndCompetitionId(userId, competitionId);
-        RegisterDO register = new RegisterDO();
-        register.setCompetitionId(competitionId);
-        register.setUserId(userId);
-        registerDao.save(register);
+        RegisterDO record = registerDao.getRecord(userId, competitionId);
+        if (record != null) {
+            throw BusinessException.newInstance(StatusEnum.RECORDS_ALREADY_EXISTS, "用户已报名");
+        }
+
+        record = new RegisterDO();
+        record.setCompetitionId(competitionId);
+        record.setUserId(userId);
+        registerDao.save(record);
     }
 
     @Override
     public List<BaseUserInfoDTO> queryCompetitionUser(Long competitionId) {
         List<Long> userIds = registerDao.listUserByCompetitionId(competitionId);
+        List<UserInfoDO> users = userDao.listByIds(userIds);
+        return UserConverter.toDtoList(users);
     }
 }

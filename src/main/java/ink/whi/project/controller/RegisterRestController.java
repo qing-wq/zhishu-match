@@ -50,6 +50,7 @@ public class RegisterRestController {
     @Permission(role = UserRole.ADMIN)
     @GetMapping(path = "user")
     public ResVo<List<BaseUserInfoDTO>> user(Long competitionId) {
-       competitionService.queryCompetitionUser(competitionId);
+        List<BaseUserInfoDTO> list = competitionService.queryCompetitionUser(competitionId);
+        return ResVo.ok(list);
     }
 }

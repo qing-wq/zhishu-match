@@ -1,13 +1,13 @@
 package ink.whi.project.modules.user.converter;
 
-import cn.hutool.system.UserInfo;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.req.UserSaveReq;
 import ink.whi.project.common.enums.RoleEnum;
 import ink.whi.project.modules.user.repo.entity.UserDO;
-import ink.whi.project.common.domain.dto.BaseUserDTO;
 import ink.whi.project.modules.user.repo.entity.UserInfoDO;
 import org.springframework.beans.BeanUtils;
+
+import java.util.List;
 
 /**
  * 实体转换
@@ -28,7 +28,7 @@ public class UserConverter {
         return user;
     }
 
-    public static UserDO toUserDo(UserSaveReq req) {
+    public static UserDO toDo(UserSaveReq req) {
         UserDO user = new UserDO();
         user.setAccount(req.getUsername());
         user.setPassword(req.getPassword());
@@ -42,5 +42,9 @@ public class UserConverter {
         UserInfoDO info = new UserInfoDO();
         BeanUtils.copyProperties(req, info);
         return info;
+    }
+
+    public static List<BaseUserInfoDTO> toDtoList(List<UserInfoDO> list) {
+        return list.stream().map(UserConverter::toDTO).toList();
     }
 }

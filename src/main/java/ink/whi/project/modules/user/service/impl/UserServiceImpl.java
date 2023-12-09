@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public Long saveUser(UserSaveReq req) {
-        UserDO user = UserConverter.toUserDo(req);
+        UserDO user = UserConverter.toDo(req);
         UserDO record = userDao.getUserByName(user.getAccount());
         if (record != null) {
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_ARGUMENTS_MIXED, "用户已存在，请登录");
