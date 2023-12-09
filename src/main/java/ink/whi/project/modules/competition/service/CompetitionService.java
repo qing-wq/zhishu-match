@@ -1,12 +1,11 @@
 package ink.whi.project.modules.competition.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import ink.whi.project.common.domain.dto.SimpleAnnouncementDTO;
+import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.page.PageParam;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.req.CompetitionUpdReq;
 import ink.whi.project.modules.competition.repo.entity.CompetitionDO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,15 +15,19 @@ import java.util.List;
  * @Date 2023/12/7
  */
 public interface CompetitionService extends IService<CompetitionDO> {
-    public PageVo<CompetitionDO> list(PageParam pageParam);
+    PageVo<CompetitionDO> list(PageParam pageParam);
 
-    public boolean update(CompetitionUpdReq req);
+    boolean update(CompetitionUpdReq req);
 
-    public boolean delete(Long id);
+    boolean delete(Long id);
 
-    public List<CompetitionDO> listAll(PageParam pageParam);
+    List<CompetitionDO> listAll(PageParam pageParam);
 
-    public Long countAll();
+    Long countAll();
 
     Integer getMaxMemberCount(Long competitionId);
+
+    void signUp(Long competitionId, Long userId);
+
+    List<BaseUserInfoDTO> queryCompetitionUser(Long competitionId);
 }

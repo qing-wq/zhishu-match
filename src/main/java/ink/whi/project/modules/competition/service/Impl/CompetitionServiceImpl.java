@@ -2,11 +2,17 @@ package ink.whi.project.modules.competition.service.Impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ink.whi.project.common.domain.base.BaseDO;
+import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.page.PageParam;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.req.CompetitionUpdReq;
 import ink.whi.project.common.enums.YesOrNoEnum;
+import ink.whi.project.common.exception.BusinessException;
+import ink.whi.project.common.exception.StatusEnum;
+import ink.whi.project.modules.competition.repo.dao.CompetitionDao;
+import ink.whi.project.modules.competition.repo.dao.RegisterDao;
 import ink.whi.project.modules.competition.repo.entity.CompetitionDO;
+import ink.whi.project.modules.competition.repo.entity.RegisterDO;
 import ink.whi.project.modules.competition.repo.mapper.CompetitionMapper;
 import ink.whi.project.modules.competition.service.CompetitionService;
 import org.springframework.beans.BeanUtils;
@@ -23,6 +29,11 @@ import java.util.List;
 @Service
 public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, CompetitionDO> implements CompetitionService {
 
+    @Autowired
+    private CompetitionDao competitionDao;
+
+    @Autowired
+    private RegisterDao registerDao;
 
     /**
      * 分页查询
@@ -66,6 +77,10 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
                 .list();
     }
 
+    /**
+     * 获取全部比赛数量
+     * @return
+     */
     public Long countAll() {
         return lambdaQuery().eq(CompetitionDO::getDeleted, YesOrNoEnum.NO.getCode())
                 .count();
@@ -75,5 +90,26 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
     public Integer getMaxMemberCount(Long competitionId) {
         CompetitionDO competition = this.getById(competitionId);
         return competition.getMaxMember();
+    }
+
+    @Override
+    public void signUp(Long competitionId, Long userId) {
+        CompetitionDO competition = getById(competitionId);
+        if (competition == null) {
+            throw BusinessException.newInstance(StatusEnum.RECORDS_NOT_EXISTS, "比赛不存在：" + competitionId);
+        }
+
+        // todo: 判断比赛是否截止
+
+        registerDao.getRegisterByUserIdAndCompetitionId(userId, competitionId);
+        RegisterDO register = new RegisterDO();
+        register.setCompetitionId(competitionId);
+        register.setUserId(userId);
+        registerDao.save(register);
+    }
+
+    @Override
+    public List<BaseUserInfoDTO> queryCompetitionUser(Long competitionId) {
+        List<Long> userIds = registerDao.listUserByCompetitionId(competitionId);
     }
 }

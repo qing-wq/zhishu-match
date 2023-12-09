@@ -4,8 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 更新配置">
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 完善登录接口">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/dto/CompetitionDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/vo/CompetitionDetailVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RegisterRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/dao/RegisterDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/entity/RegisterDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/mapper/RegisterMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/CompetitionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/CompetitionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/dao/CompetitionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/dao/CompetitionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/CompetitionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/CompetitionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-email.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-email.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ink.whi.project/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ink.whi.project/MyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +43,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2WrwKtGArTCzStebW7Mba3YLDKd" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -37,12 +54,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/qing/MyDocuments/code/ideaProject/zhishu-match/src/main/test/java/ink.whi.project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.14053535",
+    "project.structure.side.proportion": "0.3222486",
+    "settings.build.tools.auto.reload": "SELECTIVE",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -68,7 +109,7 @@
       <recent name="ink.whi.project.common.annotition.limit" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ApplicationRun (1)">
+  <component name="RunManager" selected="JUnit.MyTest.test2">
     <configuration name="MyTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-demo" />
       <extension name="coverage">
@@ -85,9 +126,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationRun (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="zhishu-match" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ink.whi.project.ApplicationRun" />
+    <configuration name="MyTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ink.whi.project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ink.whi.project" />
+      <option name="MAIN_CLASS_NAME" value="ink.whi.project.MyTest" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -101,11 +151,12 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.MyTest.test" />
+      <item itemvalue="JUnit.MyTest.test2" />
       <item itemvalue="Spring Boot.ApplicationRun" />
-      <item itemvalue="Spring Boot.ApplicationRun (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyTest.test2" />
         <item itemvalue="JUnit.MyTest.test" />
       </list>
     </recent_temporary>
@@ -123,7 +174,9 @@
       <workItem from="1701757834190" duration="3555000" />
       <workItem from="1701761523492" duration="5248000" />
       <workItem from="1701776050780" duration="8523000" />
-      <workItem from="1701845504470" duration="20889000" />
+      <workItem from="1701845504470" duration="21452000" />
+      <workItem from="1701969437453" duration="2446000" />
+      <workItem from="1702002801931" duration="44245000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -189,7 +242,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702118046181</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: 完善登录接口">
+      <option name="closed" value="true" />
+      <created>1702120681449</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702120681449</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +276,8 @@
     <MESSAGE value="feat: 用户信息完善" />
     <MESSAGE value="feat: 团队模块搭建" />
     <MESSAGE value="feat: 完善组队信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 完善组队信息" />
+    <MESSAGE value="feat: 完善登录接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 完善登录接口" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
