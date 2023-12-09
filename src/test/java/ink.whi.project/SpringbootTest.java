@@ -1,9 +1,9 @@
 package ink.whi.project;
 
 import ink.whi.project.modules.rank.repo.mapper.RankMapper;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.testng.annotations.Test;
 
 import java.util.List;
 

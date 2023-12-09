@@ -9,6 +9,7 @@ import ink.whi.project.common.enums.YesOrNoEnum;
 import ink.whi.project.modules.competition.repo.entity.CompetitionDO;
 import ink.whi.project.modules.competition.repo.mapper.CompetitionMapper;
 import ink.whi.project.modules.competition.service.CompetitionService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,9 +41,14 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
      * @return
      */
     public boolean update(CompetitionUpdReq req){
-        boolean update = lambdaUpdate().eq(CompetitionDO::getId, req.getId())
-                .set(CompetitionDO::getName, req.getName())
-                .set(CompetitionDO::getDescription, req.getDescription()).update();
+        CompetitionDO competitionDO = new CompetitionDO();
+        BeanUtils.copyProperties(req, competitionDO);
+//        boolean update = lambdaUpdate().eq(CompetitionDO::getId, req.getId())
+//                .set(CompetitionDO::getName, req.getName())
+//                .set(CompetitionDO::getDescription, req.getDescription())
+//                .set(CompetitionDO::getMaxMember, req.getMaxMember())
+//                .set(CompetitionDO::get).update();
+        boolean update = lambdaUpdate().eq(CompetitionDO::getId, req.getId()).update(competitionDO);
         return update;
     }
 

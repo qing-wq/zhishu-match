@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serial;
+import java.util.Date;
 
 /**
  * @Description
@@ -23,7 +24,7 @@ public class CompetitionDO extends BaseDO {
      private static final long serialVersionUID = -3887090033109593542L;
 
      /**
-      * 比赛名字
+      * 比赛名称
       */
      private String name;
 
@@ -42,6 +43,21 @@ public class CompetitionDO extends BaseDO {
       * 最大人数
       */
      private Integer maxMember;
+
+     /**
+      * 开始时间
+      */
+     private Date startTime;
+
+     /**
+      * 结束时间
+      */
+     private Date endTime;
+
+     /**
+      * 报名截止时间
+      */
+     private Date signupDeadline;
 
      /**
       * 是否删除
