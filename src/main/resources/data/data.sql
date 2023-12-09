@@ -55,10 +55,39 @@ create table `zhishu-match`.announcement
 )
     comment '公告表';
 
+create table `zhishu-match`.competition
+(
+    id          int auto_increment
+        primary key,
+    name        varchar(255)                        null,
+    description varchar(255)                        null,
+    deleted     tinyint   default 0                 not null comment '是否删除',
+    create_time timestamp default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
+)
+    charset = utf8mb3
+    row_format = DYNAMIC;
+
+create table `zhishu-match`.`rank`
+(
+    id             int                                 not null comment '主键'
+        primary key,
+    user_id        int                                 null comment '用户id',
+    score          double                              null comment '分数',
+    status         varchar(255)                        null comment '状态',
+    competition_id int                                 null comment '比赛id',
+    create_time    timestamp default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time    timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间',
+    deleted        tinyint   default 0                 not null comment '是否删除'
+)
+    charset = utf8mb3
+    row_format = DYNAMIC;
+
 create table `zhishu-match`.team
 (
     id          int unsigned auto_increment comment '业务id'
         primary key,
+    competition_id int                                 null comment '比赛id',
     name        varchar(60) default ''                not null comment '团队名称',
     captain     int         default 0                 not null comment '队长id',
     deleted     tinyint     default 0                 not null comment '是否删除',
@@ -66,3 +95,14 @@ create table `zhishu-match`.team
     update_time timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
 )
     comment '团队表';
+
+create table `zhishu-match`.team_member
+(
+    id          int unsigned auto_increment comment '业务id'
+        primary key,
+    team_id int                                 null comment '团队id',
+    user_id     int         default 0                 not null comment '用户id',
+    create_time timestamp   default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
+)
+    comment '组队表';

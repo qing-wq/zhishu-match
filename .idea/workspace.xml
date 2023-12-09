@@ -4,30 +4,32 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="fix: 修复lua脚本异常">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/dto/BaseUserInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/enums/RoleEnum.java" afterDir="false" />
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 用户信息完善">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/dto/TeamInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/dto/TeamMemberDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/TeamSaveReq.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/enums/CompetitionTypeEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/enums/TeamStatusEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/TeamRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/dao/CompetitionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/convreter/TeamConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/dao/TeamDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/entity/TeamDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/entity/TeamMemberDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/mapper/TeamMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/mapper/TeamMemberMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/service/Impl/TeamServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/service/TeamService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/aspect/LimitAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/aspect/LimitAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/context/ReqInfoContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/context/ReqInfoContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/properties/JwtConfigProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/config/properties/JwtConfigProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/SpringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/SpringUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/AnnouncementRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/AnnouncementRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/LoginRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/LoginRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/hook/filter/GlobalInitHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/hook/filter/GlobalInitHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/announcement/converter/AnnouncementConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/announcement/converter/AnnouncementConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/converter/UserConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/converter/UserConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/repo/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/repo/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/repo/entity/UserInfoDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/repo/entity/UserInfoDO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/StatusEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/StatusEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/CompetitionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/CompetitionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/entity/CompetitionDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/entity/CompetitionDO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/CompetitionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/CompetitionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-email.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-email.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/data/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/zhishu-match.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/zhishu-match.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +39,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -58,36 +61,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/qing/MyDocuments/code/ideaProject/zhishu-match/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.14053535&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3222486&quot;,
-    &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/qing/MyDocuments/code/ideaProject/zhishu-match/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.14053535",
+    "project.structure.side.proportion": "0.3222486",
+    "settings.build.tools.auto.reload": "ALL",
+    "settings.editor.selected.configurable": "Errors",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -133,7 +136,7 @@
       <workItem from="1701776050780" duration="8523000" />
       <workItem from="1701845504470" duration="21452000" />
       <workItem from="1701969437453" duration="2446000" />
-      <workItem from="1702002801931" duration="19752000" />
+      <workItem from="1702002801931" duration="33044000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -175,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701969163609</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: 用户信息完善">
+      <option name="closed" value="true" />
+      <created>1702038792202</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702038792202</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +209,8 @@
     <MESSAGE value="feat: 用户模块搭建，接口限流配置" />
     <MESSAGE value="feat: 更新配置" />
     <MESSAGE value="fix: 修复lua脚本异常" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: 修复lua脚本异常" />
+    <MESSAGE value="feat: 用户信息完善" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 用户信息完善" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

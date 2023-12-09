@@ -26,4 +26,5 @@ public interface CompetitionService extends IService<CompetitionDO> {
 
     public Long countAll();
 
+    Integer getMaxMemberCount(Long competitionId);
 }

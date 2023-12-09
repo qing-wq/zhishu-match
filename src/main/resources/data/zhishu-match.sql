@@ -57,7 +57,7 @@ CREATE TABLE `rank`  (
   `user_id` int(11) NULL DEFAULT NULL COMMENT '用户id',
   `score` double NULL DEFAULT NULL COMMENT '分数',
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '状态',
-  `competiton_id` int(11) NULL DEFAULT NULL COMMENT '比赛id',
+  `competition_id` int(11) NULL DEFAULT NULL COMMENT '比赛id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   `deleted` tinyint(4) NOT NULL DEFAULT 0 COMMENT '是否删除',

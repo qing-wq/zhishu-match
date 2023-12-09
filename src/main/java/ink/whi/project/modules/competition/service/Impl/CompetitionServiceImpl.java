@@ -69,4 +69,10 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
         return lambdaQuery().eq(CompetitionDO::getDeleted, YesOrNoEnum.NO.getCode())
                 .count();
     }
+
+    @Override
+    public Integer getMaxMemberCount(Long competitionId) {
+        CompetitionDO competition = this.getById(competitionId);
+        return competition.getMaxMember();
+    }
 }
