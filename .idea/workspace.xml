@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 更新配置">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionSaveReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionSaveReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionUpdReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionUpdReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/CompetitionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/CompetitionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/entity/CompetitionDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/entity/CompetitionDO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ink.whi.project/SpringbootTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ink.whi.project/SpringbootTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

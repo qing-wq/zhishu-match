@@ -43,11 +43,6 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
     public boolean update(CompetitionUpdReq req){
         CompetitionDO competitionDO = new CompetitionDO();
         BeanUtils.copyProperties(req, competitionDO);
-//        boolean update = lambdaUpdate().eq(CompetitionDO::getId, req.getId())
-//                .set(CompetitionDO::getName, req.getName())
-//                .set(CompetitionDO::getDescription, req.getDescription())
-//                .set(CompetitionDO::getMaxMember, req.getMaxMember())
-//                .set(CompetitionDO::get).update();
         boolean update = lambdaUpdate().eq(CompetitionDO::getId, req.getId()).update(competitionDO);
         return update;
     }
