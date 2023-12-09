@@ -57,20 +57,25 @@ create table `zhishu-match`.announcement
 
 create table `zhishu-match`.competition
 (
-    id          int auto_increment
+    id              int auto_increment comment '主键'
         primary key,
-    name        varchar(255)                        null,
-    description varchar(255)                        null,
-    deleted     tinyint   default 0                 not null comment '是否删除',
-    create_time timestamp default CURRENT_TIMESTAMP not null comment '创建时间',
-    update_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
+    name            varchar(255)                        null comment '比赛名称',
+    description     varchar(255)                        null comment '介绍',
+    type            int                                 null comment '比赛类型 1-个人赛 2-团体赛',
+    start_time      timestamp default CURRENT_TIMESTAMP null comment '比赛开始时间',
+    end_time        timestamp default CURRENT_TIMESTAMP null comment '比赛结束时间',
+    signup_deadline timestamp default CURRENT_TIMESTAMP null comment '报名截止时间',
+    max_member      int                                 null comment '最大人数',
+    deleted         tinyint   default 0                 not null comment '是否删除',
+    create_time     timestamp default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time     timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
 )
     charset = utf8mb3
     row_format = DYNAMIC;
 
 create table `zhishu-match`.`rank`
 (
-    id             int                                 not null comment '主键'
+    id             int auto_increment comment '主键'
         primary key,
     user_id        int                                 null comment '用户id',
     score          double                              null comment '分数',
@@ -85,14 +90,16 @@ create table `zhishu-match`.`rank`
 
 create table `zhishu-match`.team
 (
-    id          int unsigned auto_increment comment '业务id'
+    id             int unsigned auto_increment comment '业务id'
         primary key,
-    competition_id int                                 null comment '比赛id',
-    name        varchar(60) default ''                not null comment '团队名称',
-    captain     int         default 0                 not null comment '队长id',
-    deleted     tinyint     default 0                 not null comment '是否删除',
-    create_time timestamp   default CURRENT_TIMESTAMP not null comment '创建时间',
-    update_time timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
+    competition_id int                                   null comment '比赛id',
+    name           varchar(60) default ''                not null comment '团队名称',
+    captain        int         default 0                 not null comment '队长id',
+    deleted        tinyint     default 0                 not null comment '是否删除',
+    create_time    timestamp   default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time    timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间',
+    constraint uk_name
+        unique (name)
 )
     comment '团队表';
 
@@ -100,21 +107,27 @@ create table `zhishu-match`.team_member
 (
     id          int unsigned auto_increment comment '业务id'
         primary key,
-    team_id int                                 null comment '团队id',
-    user_id     int         default 0                 not null comment '用户id',
-    create_time timestamp   default CURRENT_TIMESTAMP not null comment '创建时间',
-    update_time timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
+    team_id     int                                 null comment '团队id',
+    user_id     int       default 0                 not null comment '用户id',
+    status      int       default 0                 not null comment '组队状态 0-未加入 1-待通过 2-已加入',
+    create_time timestamp default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间',
+    constraint uk_team_user
+        unique (team_id, user_id)
 )
     comment '组队表';
 
+
 create table `zhishu-match`.register
 (
-    id          int unsigned auto_increment comment '业务id'
+    id             int unsigned auto_increment comment '业务id'
         primary key,
     competition_id int                                 null comment '比赛id',
-    user_id     int         default 0                 not null comment '用户id',
-    deleted     tinyint     default 0                 not null comment '是否删除',
-    create_time timestamp   default CURRENT_TIMESTAMP not null comment '创建时间',
-    update_time timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
+    user_id        int       default 0                 not null comment '用户id',
+    deleted        tinyint   default 0                 not null comment '是否删除',
+    create_time    timestamp default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time    timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间',
+    constraint uk_competition_user
+        unique (competition_id, user_id)
 )
     comment '报名表';

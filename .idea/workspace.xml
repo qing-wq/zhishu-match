@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 完善登录接口">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RegisterRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RegisterRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/dao/RegisterDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/dao/RegisterDao.java" afterDir="false" />
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 用户报名部分">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/converter/UserConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/converter/UserConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/user/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-email.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-email.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/zhishu-match.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/zhishu-match.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +100,7 @@
       <recent name="ink.whi.project.common.annotition.limit" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyTest.test2">
+  <component name="RunManager" selected="Spring Boot.ApplicationRun">
     <configuration name="MyTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-demo" />
       <extension name="coverage">
@@ -168,7 +167,7 @@
       <workItem from="1701776050780" duration="8523000" />
       <workItem from="1701845504470" duration="21452000" />
       <workItem from="1701969437453" duration="2446000" />
-      <workItem from="1702002801931" duration="44731000" />
+      <workItem from="1702002801931" duration="45808000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -250,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702127036632</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat: 用户报名部分">
+      <option name="closed" value="true" />
+      <created>1702127614238</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1702127614238</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,7 +284,8 @@
     <MESSAGE value="feat: 团队模块搭建" />
     <MESSAGE value="feat: 完善组队信息" />
     <MESSAGE value="feat: 完善登录接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 完善登录接口" />
+    <MESSAGE value="feat: 用户报名部分" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 用户报名部分" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

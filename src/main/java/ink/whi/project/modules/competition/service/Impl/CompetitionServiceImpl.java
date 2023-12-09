@@ -119,6 +119,11 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
         registerDao.save(record);
     }
 
+    /**
+     * 查询参赛用户信息
+     * @param competitionId
+     * @return
+     */
     @Override
     public List<BaseUserInfoDTO> queryCompetitionUser(Long competitionId) {
         List<Long> userIds = registerDao.listUserByCompetitionId(competitionId);
