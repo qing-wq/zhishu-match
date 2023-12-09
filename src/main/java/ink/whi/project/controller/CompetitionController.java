@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("competition")
+@RequestMapping(path = "competition")
 public class CompetitionController extends BaseRestController {
 
     @Autowired
@@ -37,7 +37,7 @@ public class CompetitionController extends BaseRestController {
      * @param req
      * @return
      */
-//    @Permission(role = UserRole.ADMIN)
+    @Permission(role = UserRole.ADMIN)
     @PostMapping("/create")
     public ResVo<String> create(@Validated @RequestBody CompetitionSaveReq req){
         CompetitionDO competitionDO = new CompetitionDO();
@@ -70,8 +70,9 @@ public class CompetitionController extends BaseRestController {
      * @param req
      * @return
      */
+    @Permission(role = UserRole.ADMIN)
     @PutMapping
-    public ResVo update(@Validated @RequestBody CompetitionUpdReq req){
+    public ResVo<String> update(@Validated @RequestBody CompetitionUpdReq req){
         boolean update = competitionService.update(req);
         if(update){
             return ResVo.ok("更新成功");
@@ -85,8 +86,9 @@ public class CompetitionController extends BaseRestController {
      * @param id
      * @return
      */
+    @Permission(role = UserRole.ADMIN)
     @DeleteMapping("/{id}")
-    public ResVo delete(@PathVariable("id") Long id){
+    public ResVo<String> delete(@PathVariable("id") Long id){
         boolean delete = competitionService.delete(id);
         if(delete){
             return ResVo.ok("删除成功");

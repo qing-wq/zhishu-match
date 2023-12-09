@@ -106,3 +106,15 @@ create table `zhishu-match`.team_member
     update_time timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
 )
     comment '组队表';
+
+create table `zhishu-match`.register
+(
+    id          int unsigned auto_increment comment '业务id'
+        primary key,
+    competition_id int                                 null comment '比赛id',
+    user_id     int         default 0                 not null comment '用户id',
+    deleted     tinyint     default 0                 not null comment '是否删除',
+    create_time timestamp   default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
+)
+    comment '报名表';
