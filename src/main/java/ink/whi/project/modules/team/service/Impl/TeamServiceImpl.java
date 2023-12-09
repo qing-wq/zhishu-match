@@ -56,9 +56,7 @@ public class TeamServiceImpl implements TeamService {
         }
 
         // 判断人数
-        Integer maxMemberCount = competitionService.getMaxMemberCount(team.getCompetitionId());
-        Integer memberCount = teamDao.getMemberCount(teamId);
-        if (maxMemberCount <= memberCount) {
+        if (isFull(team)) {
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "队伍人数已满");
         }
 
@@ -74,7 +72,13 @@ public class TeamServiceImpl implements TeamService {
         Long userId = ReqInfoContext.getReqInfo().getUserId();
         TeamDO team = teamDao.getById(teamId);
         if (team == null || !Objects.equals(team.getCaptain(), userId)) {
+            // 只有队长可以同意
             throw BusinessException.newInstance(StatusEnum.FORBID_ERROR);
+        }
+
+        // 判断人数
+        if (isFull(team)) {
+            throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "队伍人数已满");
         }
         teamDao.agree(teamId, member);
     }
@@ -88,6 +92,17 @@ public class TeamServiceImpl implements TeamService {
         }
 
         return buildTeamDetailInfo(team);
+    }
+
+    /**
+     * 判断队伍是否已满
+     * @param team
+     * @return
+     */
+    private boolean isFull(TeamDO team) {
+        Integer maxMemberCount = competitionService.getMaxMemberCount(team.getCompetitionId());
+        Integer memberCount = teamDao.getMemberCount(team.getId());
+        return maxMemberCount <= memberCount;
     }
 
     private TeamInfoDTO buildTeamDetailInfo(TeamDO team) {
