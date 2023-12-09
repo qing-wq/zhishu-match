@@ -1,7 +1,6 @@
 package ink.whi.project.common.domain.req;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,11 +13,11 @@ import javax.validation.constraints.Size;
 @Data
 public class CompetitionSaveReq {
 
-    @NotNull
+    @NotNull(message = "比赛名称不能为空")
     @Size(min = 1)
     private String name;
 
-    @NotNull
+    @NotNull(message = "介绍不能为空")
     private String description;
 
 }

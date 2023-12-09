@@ -17,21 +17,21 @@ public class CompetitionUpdReq {
     /**
      * id
      */
-    @NotNull
+    @NotNull(message = "id不能为空")
     @Min(1)
     private Long id;
 
     /**
      * 比赛名称
      */
-    @NotNull
+    @NotNull(message = "比赛名称不能为空")
     @Size(min = 1)
     private String name;
 
     /**
      * 介绍
      */
-    @NotNull
+    @NotNull(message = "介绍不能为空")
     private String description;
 
 }

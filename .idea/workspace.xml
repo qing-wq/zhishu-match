@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 更新配置" />
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="init">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionSaveReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionSaveReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionUpdReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/CompetitionUpdReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/zhishu-match.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/zhishu-match.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +35,15 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -79,6 +93,7 @@
       <workItem from="1701761523492" duration="5248000" />
       <workItem from="1701776050780" duration="8523000" />
       <workItem from="1701845504470" duration="20889000" />
+      <workItem from="1702115253832" duration="3199000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
