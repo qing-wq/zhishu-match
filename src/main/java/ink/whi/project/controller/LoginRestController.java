@@ -115,13 +115,10 @@ public class LoginRestController {
      * 获取用户登录状态
      * @return
      */
+    @Permission(role = UserRole.LOGIN)
     @GetMapping(path = "info")
     public ResVo<BaseUserInfoDTO> user() {
-        Long userId = ReqInfoContext.getReqInfo().getUserId();
-        if (userId == null) {
-            return ResVo.ok(null);
-        }
-        BaseUserInfoDTO info = userService.queryBasicUserInfo(userId);
+        BaseUserInfoDTO info = ReqInfoContext.getReqInfo().getUser();
         return ResVo.ok(info);
     }
 }

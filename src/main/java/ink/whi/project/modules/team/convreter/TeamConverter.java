@@ -1,9 +1,11 @@
 package ink.whi.project.modules.team.convreter;
 
+import ink.whi.project.common.domain.dto.TeamInfoDTO;
 import ink.whi.project.common.domain.dto.TeamMemberDTO;
 import ink.whi.project.common.domain.req.TeamSaveReq;
 import ink.whi.project.modules.team.repo.entity.TeamDO;
 import ink.whi.project.modules.team.repo.entity.TeamMemberDO;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 
@@ -40,5 +42,16 @@ public class TeamConverter {
 
     public static List<TeamMemberDTO> toDtoList(List<TeamMemberDO> list) {
         return list.stream().map(TeamConverter::toDto).toList();
+    }
+
+    public static TeamInfoDTO toDto(TeamDO team) {
+        if (team == null) {
+            return null;
+        }
+
+        TeamInfoDTO dto = new TeamInfoDTO();
+        BeanUtils.copyProperties(team, dto);
+        dto.setTeamId(team.getId());
+        return dto;
     }
 }

@@ -99,8 +99,8 @@ create table `zhishu-match`.team
     deleted        tinyint     default 0                 not null comment '是否删除',
     create_time    timestamp   default CURRENT_TIMESTAMP not null comment '创建时间',
     update_time    timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间',
-    constraint uk_name
-        unique (name)
+    constraint uk_competition_name
+        unique (competition_id, name)
 )
     comment '团队表';
 

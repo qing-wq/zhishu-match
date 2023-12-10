@@ -32,9 +32,6 @@ import java.util.Objects;
 @Repository
 public class TeamDao extends ServiceImpl<TeamMapper, TeamDO> {
 
-    @Autowired
-    private TeamMemberMapper teamMemberMapper;
-
     public TeamDO queryByCompetitionIdAndCaptain(Long competitionId, Long captain) {
         return lambdaQuery().eq(TeamDO::getCompetitionId, competitionId)
                 .eq(TeamDO::getCaptain, captain)
@@ -42,77 +39,21 @@ public class TeamDao extends ServiceImpl<TeamMapper, TeamDO> {
                 .one();
     }
 
-    public TeamDO queryByTeamName(String name) {
+    public TeamDO queryByTeamName(Long competitionId, String name) {
         return lambdaQuery().eq(TeamDO::getName, name)
+                .eq(TeamDO::getCompetitionId, competitionId)
                 .eq(TeamDO::getDeleted, YesOrNoEnum.NO.getCode())
                 .one();
-    }
-
-    public void join(Long teamId, Long userId) {
-        LambdaQueryChainWrapper<TeamMemberDO> wrapper = ChainWrappers.lambdaQueryChain(teamMemberMapper);
-        TeamMemberDO record = wrapper.eq(TeamMemberDO::getTeamId, teamId)
-                .eq(TeamMemberDO::getUserId, userId)
-                .one();
-        if (record != null) {
-            TeamStatusEnum status = TeamStatusEnum.formCode(record.getStatus());
-            switch (status) {
-                case WAIT -> throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "您已提交已申请");
-                case JOINED -> throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "您已加入该队伍");
-                case NOT_JOIN -> {
-                    record.setStatus(TeamStatusEnum.WAIT.getCode());
-                    teamMemberMapper.updateById(record);
-                }
-            }
-        } else {
-            record = new TeamMemberDO();
-            record.setUserId(userId);
-            record.setStatus(TeamStatusEnum.WAIT.getCode());
-            teamMemberMapper.insert(record);
-        }
-    }
-
-    public void agree(Long teamId, Long member) {
-        LambdaQueryWrapper<TeamMemberDO> wrapper = Wrappers.lambdaQuery();
-        wrapper.eq(TeamMemberDO::getTeamId, teamId)
-                .eq(TeamMemberDO::getUserId, member);
-        TeamMemberDO record = teamMemberMapper.selectOne(wrapper);
-        if (Objects.equals(record.getStatus(), TeamStatusEnum.WAIT.getCode())) {
-            record.setStatus(TeamStatusEnum.JOINED.getCode());
-            teamMemberMapper.updateById(record);
-        } else {
-            throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE);
-        }
-    }
-
-    public Integer getMemberCount(Long teamId) {
-        LambdaQueryChainWrapper<TeamMemberDO> chainWrapper = ChainWrappers.lambdaQueryChain(teamMemberMapper);
-        return chainWrapper.eq(TeamMemberDO::getTeamId, teamId)
-                .eq(TeamMemberDO::getStatus, TeamStatusEnum.JOINED.getCode())
-                .count().intValue();
-    }
-
-    public List<TeamMemberDTO> listTeamMember(Long teamId) {
-        LambdaQueryChainWrapper<TeamMemberDO> chainWrapper = ChainWrappers.lambdaQueryChain(teamMemberMapper);
-        List<TeamMemberDO> list = chainWrapper.eq(TeamMemberDO::getTeamId, teamId)
-                .in(TeamMemberDO::getStatus, TeamStatusEnum.JOINED.getCode(), TeamStatusEnum.WAIT.getCode())
-                .list();
-        if (CollectionUtils.isEmpty(list)) {
-            return Collections.emptyList();
-        }
-        return TeamConverter.toDtoList(list);
     }
 
     /**
      * 获取用户所在的队伍
      *
-     * @param member
+     * @param competition
+     * @param userId
      * @return
      */
-    public Long getUserTeam(Long member) {
-        LambdaQueryChainWrapper<TeamMemberDO> wrapper = ChainWrappers.lambdaQueryChain(teamMemberMapper);
-        TeamMemberDO team = wrapper.eq(TeamMemberDO::getUserId, member)
-                .eq(TeamMemberDO::getStatus, TeamStatusEnum.JOINED.getCode())
-                .one();
-        return team == null ? null : team.getTeamId();
+    public Long getUserTeam(Long competition, Long userId) {
+        return baseMapper.selectUserTeam(competition, userId);
     }
 }
