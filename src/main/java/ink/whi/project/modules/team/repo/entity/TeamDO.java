@@ -35,5 +35,4 @@ public class TeamDO extends BaseDO {
     private Integer deleted;
 
 
-    private Integer maxMemberCount;
 }
