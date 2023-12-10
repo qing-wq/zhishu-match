@@ -1,5 +1,6 @@
 package ink.whi.project.modules.competition.service.Impl;
 
+import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ink.whi.project.common.domain.base.BaseDO;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
@@ -23,6 +24,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -106,7 +110,17 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
             throw BusinessException.newInstance(StatusEnum.RECORDS_NOT_EXISTS, "比赛不存在：" + competitionId);
         }
 
-        // todo: 判断比赛是否截止
+        Date signupDeadline = competition.getSignupDeadline();
+
+        // 将 java.util.Date 转换为 java.time.LocalDate
+        LocalDate deadlineDate = signupDeadline.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        // 获取今天的日期
+        LocalDate today = LocalDate.now();
+
+        if (deadlineDate.isBefore(today)) {
+            throw BusinessException.newInstance(StatusEnum.UNEXPECT_ERROR, "比赛已截止报名" + competitionId);
+        }
 
         RegisterDO record = registerDao.getRecord(userId, competitionId);
         if (record != null) {

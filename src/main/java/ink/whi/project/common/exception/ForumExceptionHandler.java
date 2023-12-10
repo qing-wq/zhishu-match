@@ -5,10 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.core.NestedRuntimeException;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +24,13 @@ import javax.servlet.http.HttpServletResponse;
 @RestControllerAdvice
 @Order(-100)
 public class ForumExceptionHandler {
+
+    @ExceptionHandler(BindException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResVo<String> handleValidationException(BindException ex) {
+        String errorMessage = "请求参数验证失败: " + ex.getFieldErrors().get(0).getDefaultMessage();
+        return ResVo.fail(StatusEnum.UNEXPECT_ERROR, errorMessage);
+    }
 
     @ExceptionHandler(BusinessException.class)
     public ResVo<String> forumExceptionHandler(HttpServletResponse resp, Exception e) {

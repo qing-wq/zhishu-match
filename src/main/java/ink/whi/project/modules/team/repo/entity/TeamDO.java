@@ -33,4 +33,6 @@ public class TeamDO extends BaseDO {
      * 是否删除
      */
     private Integer deleted;
+
+
 }

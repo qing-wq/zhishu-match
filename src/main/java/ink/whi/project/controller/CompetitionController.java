@@ -37,7 +37,7 @@ public class CompetitionController extends BaseRestController {
      * @param req
      * @return
      */
-//    @Permission(role = UserRole.ADMIN)
+    @Permission(role = UserRole.ADMIN)
     @PostMapping("/create")
     public ResVo<String> create(@Validated @RequestBody CompetitionSaveReq req){
         CompetitionDO competitionDO = new CompetitionDO();
