@@ -1,12 +1,9 @@
 package ink.whi.project.modules.team.repo.dao;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.conditions.ChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import ink.whi.project.common.domain.dto.TeamMemberDTO;
@@ -39,7 +36,7 @@ public class TeamDao extends ServiceImpl<TeamMapper, TeamDO> {
     private TeamMemberMapper teamMemberMapper;
 
     public TeamDO queryByCompetitionIdAndCaptain(Long competitionId, Long captain) {
-        return lambdaQuery().eq(TeamDO::getCompetitionId, captain)
+        return lambdaQuery().eq(TeamDO::getCompetitionId, competitionId)
                 .eq(TeamDO::getCaptain, captain)
                 .eq(TeamDO::getDeleted, YesOrNoEnum.NO.getCode())
                 .one();
@@ -51,8 +48,27 @@ public class TeamDao extends ServiceImpl<TeamMapper, TeamDO> {
                 .one();
     }
 
-    public void join(TeamMemberDO teamMember) {
-        teamMemberMapper.insert(teamMember);
+    public void join(Long teamId, Long userId) {
+        LambdaQueryChainWrapper<TeamMemberDO> wrapper = ChainWrappers.lambdaQueryChain(teamMemberMapper);
+        TeamMemberDO record = wrapper.eq(TeamMemberDO::getTeamId, teamId)
+                .eq(TeamMemberDO::getUserId, userId)
+                .one();
+        if (record != null) {
+            TeamStatusEnum status = TeamStatusEnum.formCode(record.getStatus());
+            switch (status) {
+                case WAIT -> throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "您已提交已申请");
+                case JOINED -> throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "您已加入该队伍");
+                case NOT_JOIN -> {
+                    record.setStatus(TeamStatusEnum.WAIT.getCode());
+                    teamMemberMapper.updateById(record);
+                }
+            }
+        } else {
+            record = new TeamMemberDO();
+            record.setUserId(userId);
+            record.setStatus(TeamStatusEnum.WAIT.getCode());
+            teamMemberMapper.insert(record);
+        }
     }
 
     public void agree(Long teamId, Long member) {
@@ -71,8 +87,8 @@ public class TeamDao extends ServiceImpl<TeamMapper, TeamDO> {
     public Integer getMemberCount(Long teamId) {
         LambdaQueryChainWrapper<TeamMemberDO> chainWrapper = ChainWrappers.lambdaQueryChain(teamMemberMapper);
         return chainWrapper.eq(TeamMemberDO::getTeamId, teamId)
-               .eq(TeamMemberDO::getStatus, TeamStatusEnum.JOINED.getCode())
-               .count().intValue();
+                .eq(TeamMemberDO::getStatus, TeamStatusEnum.JOINED.getCode())
+                .count().intValue();
     }
 
     public List<TeamMemberDTO> listTeamMember(Long teamId) {
@@ -84,5 +100,19 @@ public class TeamDao extends ServiceImpl<TeamMapper, TeamDO> {
             return Collections.emptyList();
         }
         return TeamConverter.toDtoList(list);
+    }
+
+    /**
+     * 获取用户所在的队伍
+     *
+     * @param member
+     * @return
+     */
+    public Long getUserTeam(Long member) {
+        LambdaQueryChainWrapper<TeamMemberDO> wrapper = ChainWrappers.lambdaQueryChain(teamMemberMapper);
+        TeamMemberDO team = wrapper.eq(TeamMemberDO::getUserId, member)
+                .eq(TeamMemberDO::getStatus, TeamStatusEnum.JOINED.getCode())
+                .one();
+        return team == null ? null : team.getTeamId();
     }
 }

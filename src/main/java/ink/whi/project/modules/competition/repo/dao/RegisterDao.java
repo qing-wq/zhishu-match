@@ -17,6 +17,7 @@ public class RegisterDao extends ServiceImpl<RegisterMapper, RegisterDO> {
 
 
     public List<Long> listUserByCompetitionId(Long competitionId) {
+        // 索引下推优化
         List<RegisterDO> list = lambdaQuery()
                 .select(RegisterDO::getUserId)
                 .eq(RegisterDO::getCompetitionId, competitionId)

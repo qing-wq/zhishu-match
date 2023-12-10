@@ -30,7 +30,7 @@ public class TeamRestController {
      * @return
      */
     @Permission(role = UserRole.LOGIN)
-    @GetMapping(path = "create")
+    @PostMapping(path = "create")
     public ResVo<Long> createTeam(@RequestBody TeamSaveReq req) {
         Long userId = ReqInfoContext.getReqInfo().getUserId();
         req.setCaptain(userId);

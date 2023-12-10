@@ -55,16 +55,17 @@ public class TeamServiceImpl implements TeamService {
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "队长不能加入队伍");
         }
 
-        // 判断人数
+        // 判断该用户是否加入其他队伍
+        if (teamDao.getUserTeam(userId) != null) {
+            throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "用户已加入其他队伍");
+        }
+
         if (isFull(team)) {
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "队伍人数已满");
         }
 
-        TeamMemberDO teamMember = new TeamMemberDO();
-        teamMember.setTeamId(teamId);
-        teamMember.setUserId(userId);
-        teamMember.setStatus(TeamStatusEnum.WAIT.getCode());
-        teamDao.join(teamMember);
+
+        teamDao.join(teamId, userId);
     }
 
     @Override
@@ -76,7 +77,11 @@ public class TeamServiceImpl implements TeamService {
             throw BusinessException.newInstance(StatusEnum.FORBID_ERROR);
         }
 
-        // 判断人数
+        // 判断该用户是否加入其他队伍
+        if (teamDao.getUserTeam(member) != null) {
+            throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "用户已加入其他队伍");
+        }
+
         if (isFull(team)) {
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "队伍人数已满");
         }
@@ -95,7 +100,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     /**
-     * 判断队伍是否已满
+     * 判断队伍人数是否已满
      * @param team
      * @return
      */
