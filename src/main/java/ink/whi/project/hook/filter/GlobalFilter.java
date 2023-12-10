@@ -2,6 +2,7 @@ package ink.whi.project.hook.filter;
 
 import ink.whi.project.common.context.ReqInfoContext;
 import ink.whi.project.common.utils.CrossUtil;
+import ink.whi.project.common.utils.IpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -54,6 +55,7 @@ public class GlobalFilter implements Filter {
             reqInfo.setPath(request.getPathInfo());
             reqInfo.setReferer(request.getHeader("referer"));
             reqInfo.setUserAgent(request.getHeader("User-Agent"));
+            reqInfo.setClientIp(IpUtil.getClientIp(request));
             request = this.wrapperRequest(request, reqInfo);
             // 校验token
             globalInitService.initUserInfo(reqInfo);
@@ -87,6 +89,7 @@ public class GlobalFilter implements Filter {
             msg.append("referer=").append(URLDecoder.decode(req.getReferer())).append("; ");
         }
         msg.append("; agent=").append(req.getUserAgent());
+        msg.append("; ip=").append(req.getClientIp());
 
         if (req.getUserId() != null) {
             // 打印用户信息

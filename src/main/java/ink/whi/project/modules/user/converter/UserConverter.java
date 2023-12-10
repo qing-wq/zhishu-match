@@ -1,5 +1,6 @@
 package ink.whi.project.modules.user.converter;
 
+import ink.whi.project.common.context.ReqInfoContext;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.req.UserSaveReq;
 import ink.whi.project.common.enums.RoleEnum;
@@ -30,7 +31,7 @@ public class UserConverter {
 
     public static UserDO toDo(UserSaveReq req) {
         UserDO user = new UserDO();
-        user.setAccount(req.getUsername());
+        user.setAccount(req.getEmail());
         user.setPassword(req.getPassword());
         return user;
     }
@@ -41,6 +42,7 @@ public class UserConverter {
         }
         UserInfoDO info = new UserInfoDO();
         BeanUtils.copyProperties(req, info);
+        info.setRealName(req.getName());
         return info;
     }
 

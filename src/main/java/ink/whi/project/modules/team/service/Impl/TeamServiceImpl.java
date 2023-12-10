@@ -64,7 +64,6 @@ public class TeamServiceImpl implements TeamService {
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "队伍人数已满");
         }
 
-
         teamDao.join(teamId, userId);
     }
 

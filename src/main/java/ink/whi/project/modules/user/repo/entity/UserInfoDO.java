@@ -32,9 +32,19 @@ public class UserInfoDO extends BaseDO {
     private String userName;
 
     /**
+     * 真实姓名
+     */
+    private String realName;
+
+    /**
      * 用户头像
      */
-    private String photo;
+    private String picture;
+
+    /**
+     * 电话号码
+     */
+    private String phone;
 
     /**
      * 学号

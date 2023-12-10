@@ -16,10 +16,28 @@ public class UserSaveReq implements Serializable {
     private static final long serialVersionUID = 34489978092087873L;
 
     /**
+     * 姓名
+     */
+    @NotNull
+    private String name;
+
+    /**
+     * 学号
+     */
+    @NotNull
+    private String studentId;
+
+    /**
+     * 电话号码
+     */
+    @NotNull
+    private String phone;
+
+    /**
      * 账号（邮箱）
      */
     @NotNull
-    private String username;
+    private String email;
 
     /**
      * 密码

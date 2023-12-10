@@ -1,5 +1,6 @@
 package ink.whi.project.modules.user.service.impl;
 
+import ink.whi.project.common.context.ReqInfoContext;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.req.UserSaveReq;
 import ink.whi.project.common.exception.BusinessException;
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Long saveUser(UserSaveReq req) {
         UserDO user = UserConverter.toDo(req);
         UserDO record = userDao.getUserByName(user.getAccount());
@@ -59,7 +60,10 @@ public class UserServiceImpl implements UserService {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.saveUser(user);
+
+        // 保存用户信息
         UserInfoDO userInfo = UserConverter.toUserInfoDo(req);
+        userInfo.setIp(ReqInfoContext.getReqInfo().getClientIp());
         userInfo.setUserId(user.getId());
 
         // 生成默认初始用户名

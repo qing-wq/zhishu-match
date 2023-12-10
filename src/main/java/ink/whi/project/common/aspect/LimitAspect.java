@@ -52,14 +52,11 @@ public class LimitAspect {
 
     @Around("pointcut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
-        HttpServletRequest request =
-                ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method signatureMethod = signature.getMethod();
         Limit limit = signatureMethod.getAnnotation(Limit.class);
 
-        String key = getCombinKey(limit, signatureMethod, request);
-
+        String key = getCombinKey(limit, signatureMethod);
         List<String> keys = Collections.singletonList(key);
 
         String luaScript = buildLuaScript();
@@ -74,7 +71,7 @@ public class LimitAspect {
         }
     }
 
-    private String getCombinKey(Limit limit, Method signatureMethod, HttpServletRequest request) {
+    private String getCombinKey(Limit limit, Method signatureMethod) {
         // combinKey = 资源key + 用户key
         StringBuilder combinKey = new StringBuilder(PREFIX);
 
@@ -89,7 +86,7 @@ public class LimitAspect {
                 combinKey.append(ReqInfoContext.getReqInfo().getUserId());
                 break;
             case IP:
-                combinKey.append(IpUtil.getClientIp(request));
+                combinKey.append(ReqInfoContext.getReqInfo().getClientIp());
                 break;
             default:
                 break;

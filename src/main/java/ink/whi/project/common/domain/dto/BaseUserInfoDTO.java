@@ -1,16 +1,11 @@
 package ink.whi.project.common.domain.dto;
 
-import ink.whi.project.common.domain.base.BaseDTO;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
 import java.io.Serial;
+import java.io.Serializable;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-@Accessors(chain = true)
-public class BaseUserInfoDTO extends BaseDTO {
+public class BaseUserInfoDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = -2426438424647735636L;
 
