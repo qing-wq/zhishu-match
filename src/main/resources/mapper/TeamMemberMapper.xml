@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.whi.project.modules.team.repo.mapper.TeamMemberMapper">
+
+    <select id="listMember" resultType="ink.whi.project.common.domain.dto.TeamMemberDTO">
+        select tm.team_id   as teamId,
+               tm.user_id   as userId,
+               ui.user_name as userName,
+               tm.status    as status
+        from team_member tm
+                 left join user_info ui on tm.user_id = ui.user_id
+        where tm.team_id = #{teamId}
+          and tm.status in (1, 2)
+    </select>
+</mapper>

@@ -142,7 +142,7 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
     @Override
     public List<BaseUserInfoDTO> queryCompetitionUser(Long competitionId) {
         List<Long> userIds = registerDao.listUserByCompetitionId(competitionId);
-        List<UserInfoDO> users = userDao.listByIds(userIds);
+        List<UserInfoDO> users = userDao.listByUserIds(userIds);
         return UserConverter.toDtoList(users);
     }
 

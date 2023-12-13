@@ -70,12 +70,6 @@ public class TeamMemberDao extends ServiceImpl<TeamMemberMapper, TeamMemberDO> {
     }
 
     public List<TeamMemberDTO> listTeamMember(Long teamId) {
-        List<TeamMemberDO> list = lambdaQuery().eq(TeamMemberDO::getTeamId, teamId)
-                .in(TeamMemberDO::getStatus, TeamStatusEnum.JOINED.getCode(), TeamStatusEnum.WAIT.getCode())
-                .list();
-        if (CollectionUtils.isEmpty(list)) {
-            return Collections.emptyList();
-        }
-        return TeamConverter.toDtoList(list);
+        return baseMapper.listMember(teamId);
     }
 }
