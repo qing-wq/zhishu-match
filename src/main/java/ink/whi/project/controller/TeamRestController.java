@@ -30,7 +30,7 @@ public class TeamRestController {
      * @return
      */
     @Permission(role = UserRole.LOGIN)
-    @GetMapping(path = "create")
+    @PostMapping(path = "create")
     public ResVo<Long> createTeam(@RequestBody TeamSaveReq req) {
         Long userId = ReqInfoContext.getReqInfo().getUserId();
         req.setCaptain(userId);
@@ -76,5 +76,17 @@ public class TeamRestController {
         Long userId = ReqInfoContext.getReqInfo().getUserId();
         TeamInfoDTO info = teamService.queryTeamInfo(competitionId, userId);
         return ResVo.ok(info);
+    }
+
+    /**
+     * 根据队伍名称获取队伍信息
+     * @param name
+     * @param competitionId
+     * @return 队伍id 队伍名称
+     */
+    @GetMapping(path = "search")
+    public ResVo<TeamInfoDTO> team(@RequestParam String name, @RequestParam Long competitionId) {
+        TeamInfoDTO dto = teamService.queryTeamByName(competitionId, name);
+        return ResVo.ok(dto);
     }
 }

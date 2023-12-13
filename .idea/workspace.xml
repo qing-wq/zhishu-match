@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="init">
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 用户报名部分">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/entity/TeamDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/entity/TeamDO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +30,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2WrwKtGArTCzStebW7Mba3YLDKd" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -42,7 +46,6 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -137,7 +140,6 @@
       <workItem from="1701845504470" duration="21452000" />
       <workItem from="1701969437453" duration="2446000" />
       <workItem from="1702002801931" duration="45808000" />
-      <workItem from="1702214230851" duration="133000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -227,7 +229,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702127614238</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat: 更新数据库表结构">
+      <option name="closed" value="true" />
+      <created>1702128595607</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1702128595607</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: 多种报名情况处理">
+      <option name="closed" value="true" />
+      <created>1702215726915</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1702215726915</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +273,9 @@
     <MESSAGE value="feat: 完善组队信息" />
     <MESSAGE value="feat: 完善登录接口" />
     <MESSAGE value="feat: 用户报名部分" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 用户报名部分" />
+    <MESSAGE value="feat: 更新数据库表结构" />
+    <MESSAGE value="feat: 多种报名情况处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 多种报名情况处理" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.whi.project.modules.team.repo.mapper.TeamMapper">
+
+    <select id="selectUserTeam" resultType="java.lang.Long">
+        select tm.team_id
+        from team_member tm
+                 left join team t on t.id = tm.team_id
+        where t.competition_id = #{competition}
+          and tm.user_id = #{userId}
+          and tm.status = ${@ink.whi.project.common.enums.TeamStatusEnum@JOINED.code}
+    </select>
+</mapper>

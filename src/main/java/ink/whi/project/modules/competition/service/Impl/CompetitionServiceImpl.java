@@ -1,15 +1,17 @@
 package ink.whi.project.modules.competition.service.Impl;
 
-import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ink.whi.project.common.domain.base.BaseDO;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
+import ink.whi.project.common.domain.dto.CompetitionDTO;
 import ink.whi.project.common.domain.page.PageParam;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.req.CompetitionUpdReq;
+import ink.whi.project.common.enums.GroupStatusEnum;
 import ink.whi.project.common.enums.YesOrNoEnum;
 import ink.whi.project.common.exception.BusinessException;
 import ink.whi.project.common.exception.StatusEnum;
+import ink.whi.project.modules.competition.converter.CompetitionConverter;
 import ink.whi.project.modules.competition.repo.dao.CompetitionDao;
 import ink.whi.project.modules.competition.repo.dao.RegisterDao;
 import ink.whi.project.modules.competition.repo.entity.CompetitionDO;
@@ -19,7 +21,6 @@ import ink.whi.project.modules.competition.service.CompetitionService;
 import ink.whi.project.modules.user.converter.UserConverter;
 import ink.whi.project.modules.user.repo.dao.UserDao;
 import ink.whi.project.modules.user.repo.entity.UserInfoDO;
-import ink.whi.project.modules.user.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -143,5 +144,44 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
         List<Long> userIds = registerDao.listUserByCompetitionId(competitionId);
         List<UserInfoDO> users = userDao.listByIds(userIds);
         return UserConverter.toDtoList(users);
+    }
+
+    @Override
+    public CompetitionDTO queryCompetitionInfo(Long competitionId) {
+        CompetitionDO competition = getById(competitionId);
+        return CompetitionConverter.toDto(competition);
+    }
+
+    /**
+     * 获取用户参加的比赛id
+     * @param userId
+     * @return
+     */
+    @Override
+    public Long getUserCompetition(Long userId) {
+        return registerDao.listUserCompetition(userId);
+    }
+
+    /**
+     * 更新组队状态
+     * @param competitionId
+     * @param userId
+     * @param groupStatusEnum
+     */
+    @Override
+    public void updateGroupStatus(Long competitionId, Long userId, GroupStatusEnum groupStatusEnum) {
+        registerDao.updateGroupStatus(competitionId, userId, groupStatusEnum.getCode());
+    }
+
+    /**
+     * 查询用户组队状态
+     * @param competitionId
+     * @param userId
+     * @return
+     */
+    @Override
+    public GroupStatusEnum queryUserGroupStatus(Long competitionId, Long userId) {
+        Integer status = registerDao.getGroupStatus(competitionId, userId);
+        return GroupStatusEnum.formCode(status);
     }
 }

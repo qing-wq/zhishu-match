@@ -33,7 +33,7 @@ public class RankController extends BaseRestController {
                                             @RequestParam(name = "competitionId") Long competitionId){
         List<RankUserDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
         Integer count = rankService.getRankWithUserInfoCount(competitionId);
-        PageVo<RankUserDTO> pageVo = new PageVo<>(list, pageSize, page, count);
+        PageVo<RankUserDTO> pageVo = PageVo.build(list, pageSize, page, count);
 
         return ResVo.ok(pageVo);
     }

@@ -2,15 +2,16 @@ package ink.whi.project.controller;
 
 import ink.whi.project.common.annotition.permission.Permission;
 import ink.whi.project.common.annotition.permission.UserRole;
+import ink.whi.project.common.domain.dto.CompetitionDTO;
 import ink.whi.project.common.domain.page.PageParam;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.req.CompetitionSaveReq;
 import ink.whi.project.common.domain.req.CompetitionUpdReq;
+import ink.whi.project.common.domain.vo.CompetitionDetailVo;
 import ink.whi.project.common.domain.vo.ResVo;
 import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.controller.base.BaseRestController;
 import ink.whi.project.modules.competition.repo.entity.CompetitionDO;
-import ink.whi.project.modules.competition.repo.mapper.CompetitionMapper;
 import ink.whi.project.modules.competition.service.CompetitionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -38,7 +39,7 @@ public class CompetitionController extends BaseRestController {
      * @return
      */
     @Permission(role = UserRole.ADMIN)
-    @PostMapping("/create")
+//    @PostMapping("/create")
     public ResVo<String> create(@Validated @RequestBody CompetitionSaveReq req){
         CompetitionDO competitionDO = new CompetitionDO();
         BeanUtils.copyProperties(req, competitionDO);
@@ -56,7 +57,7 @@ public class CompetitionController extends BaseRestController {
      * @param pageSize
      * @return
      */
-    @GetMapping
+//    @GetMapping
     public ResVo<PageVo<CompetitionDO>> list(@RequestParam(name = "page", required = false) Long page,
                                              @RequestParam(name = "pageSize", required = false) Long pageSize){
 
@@ -71,7 +72,7 @@ public class CompetitionController extends BaseRestController {
      * @return
      */
     @Permission(role = UserRole.ADMIN)
-    @PutMapping
+//    @PutMapping
     public ResVo<String> update(@Validated @RequestBody CompetitionUpdReq req){
         boolean update = competitionService.update(req);
         if(update){
@@ -87,7 +88,7 @@ public class CompetitionController extends BaseRestController {
      * @return
      */
     @Permission(role = UserRole.ADMIN)
-    @DeleteMapping("/{id}")
+//    @DeleteMapping("/{id}")
     public ResVo<String> delete(@PathVariable("id") Long id){
         boolean delete = competitionService.delete(id);
         if(delete){
@@ -97,4 +98,16 @@ public class CompetitionController extends BaseRestController {
         }
     }
 
+    /**
+     * 比赛详情页
+     * @param id
+     * @return
+     */
+//    @GetMapping(path = "/detail/{id}")
+    public ResVo<CompetitionDetailVo> detail(@PathVariable("id") Long id){
+        CompetitionDetailVo vo = new CompetitionDetailVo();
+        CompetitionDTO competition = competitionService.queryCompetitionInfo(id);
+        vo.setCompetition(competition);
+        return ResVo.ok(vo);
+    }
 }

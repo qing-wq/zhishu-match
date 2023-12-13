@@ -26,8 +26,18 @@ public class TeamMemberDTO implements Serializable {
     private Long userId;
 
     /**
+     * 用户名称
+     */
+    private String userName;
+
+    /**
      * 队员状态 0-未加入 1-待通过 2-已加入
      * {@link ink.whi.project.common.enums.TeamStatusEnum}
      */
     private Integer status;
+
+    /**
+     * 是否是队长
+     */
+    private Boolean isCaptain = false;
 }

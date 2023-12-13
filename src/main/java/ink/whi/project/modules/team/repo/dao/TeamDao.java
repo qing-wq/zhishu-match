@@ -1,12 +1,9 @@
 package ink.whi.project.modules.team.repo.dao;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.conditions.ChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import ink.whi.project.common.domain.dto.TeamMemberDTO;
@@ -35,54 +32,28 @@ import java.util.Objects;
 @Repository
 public class TeamDao extends ServiceImpl<TeamMapper, TeamDO> {
 
-    @Autowired
-    private TeamMemberMapper teamMemberMapper;
-
     public TeamDO queryByCompetitionIdAndCaptain(Long competitionId, Long captain) {
-        return lambdaQuery().eq(TeamDO::getCompetitionId, captain)
+        return lambdaQuery().eq(TeamDO::getCompetitionId, competitionId)
                 .eq(TeamDO::getCaptain, captain)
                 .eq(TeamDO::getDeleted, YesOrNoEnum.NO.getCode())
                 .one();
     }
 
-    public TeamDO queryByTeamName(String name) {
+    public TeamDO queryByTeamName(Long competitionId, String name) {
         return lambdaQuery().eq(TeamDO::getName, name)
+                .eq(TeamDO::getCompetitionId, competitionId)
                 .eq(TeamDO::getDeleted, YesOrNoEnum.NO.getCode())
                 .one();
     }
 
-    public void join(TeamMemberDO teamMember) {
-        teamMemberMapper.insert(teamMember);
-    }
-
-    public void agree(Long teamId, Long member) {
-        LambdaQueryWrapper<TeamMemberDO> wrapper = Wrappers.lambdaQuery();
-        wrapper.eq(TeamMemberDO::getTeamId, teamId)
-                .eq(TeamMemberDO::getUserId, member);
-        TeamMemberDO record = teamMemberMapper.selectOne(wrapper);
-        if (Objects.equals(record.getStatus(), TeamStatusEnum.WAIT.getCode())) {
-            record.setStatus(TeamStatusEnum.JOINED.getCode());
-            teamMemberMapper.updateById(record);
-        } else {
-            throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE);
-        }
-    }
-
-    public Integer getMemberCount(Long teamId) {
-        LambdaQueryChainWrapper<TeamMemberDO> chainWrapper = ChainWrappers.lambdaQueryChain(teamMemberMapper);
-        return chainWrapper.eq(TeamMemberDO::getTeamId, teamId)
-               .eq(TeamMemberDO::getStatus, TeamStatusEnum.JOINED.getCode())
-               .count().intValue();
-    }
-
-    public List<TeamMemberDTO> listTeamMember(Long teamId) {
-        LambdaQueryChainWrapper<TeamMemberDO> chainWrapper = ChainWrappers.lambdaQueryChain(teamMemberMapper);
-        List<TeamMemberDO> list = chainWrapper.eq(TeamMemberDO::getTeamId, teamId)
-                .in(TeamMemberDO::getStatus, TeamStatusEnum.JOINED.getCode(), TeamStatusEnum.WAIT.getCode())
-                .list();
-        if (CollectionUtils.isEmpty(list)) {
-            return Collections.emptyList();
-        }
-        return TeamConverter.toDtoList(list);
+    /**
+     * 获取用户所在的队伍
+     *
+     * @param competition
+     * @param userId
+     * @return
+     */
+    public Long getUserTeam(Long competition, Long userId) {
+        return baseMapper.selectUserTeam(competition, userId);
     }
 }

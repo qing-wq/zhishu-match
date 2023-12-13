@@ -8,4 +8,5 @@ import ink.whi.project.modules.team.repo.entity.TeamDO;
  * @Date: 2023/12/8
  */
 public interface TeamMapper extends BaseMapper<TeamDO> {
+    Long selectUserTeam(Long competition, Long userId);
 }

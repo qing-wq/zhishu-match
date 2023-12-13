@@ -15,4 +15,6 @@ public interface TeamService {
     void agree(Long teamId, Long userId);
 
     TeamInfoDTO queryTeamInfo(Long competitionId, Long userId);
+
+    TeamInfoDTO queryTeamByName(Long competitionId, String name);
 }

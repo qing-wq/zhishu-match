@@ -50,7 +50,10 @@ public class ReqInfoContext {
          * 设备信息
          */
         private String userAgent;
-
+        /**
+         * 客户端ip
+         */
+        private String clientIp;
         /**
          * 用户id
          */

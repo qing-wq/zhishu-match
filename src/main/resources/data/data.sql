@@ -22,8 +22,10 @@ create table `zhishu-match`.user_info
         primary key,
     user_id     int unsigned  default '0'               not null comment '用户ID',
     user_name   varchar(50)   default ''                not null comment '用户名',
-    photo       varchar(128)  default ''                not null comment '用户图像',
+    real_name   varchar(50)   default ''                not null comment '真实姓名',
     student_id  varchar(50)   default ''                not null comment '学号',
+    picture     varchar(128)  default ''                not null comment '用户图像',
+    phone       varchar(100)  default ''                not null comment '电话号码',
     college     varchar(50)   default ''                not null comment '学院',
     profile     varchar(225)  default ''                not null comment '个人简介',
     user_role   int           default 0                 not null comment '0 普通用户 1 超管',
@@ -34,8 +36,7 @@ create table `zhishu-match`.user_info
     create_time timestamp     default CURRENT_TIMESTAMP not null comment '创建时间',
     update_time timestamp     default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间'
 )
-    comment '用户个人信息表' engine = InnoDB
-                             collate = utf8mb4_general_ci;
+    comment '用户个人信息表' collate = utf8mb4_general_ci;
 
 create index key_user_id
     on `zhishu-match`.user_info (user_id);
@@ -98,8 +99,8 @@ create table `zhishu-match`.team
     deleted        tinyint     default 0                 not null comment '是否删除',
     create_time    timestamp   default CURRENT_TIMESTAMP not null comment '创建时间',
     update_time    timestamp   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '最后更新时间',
-    constraint uk_name
-        unique (name)
+    constraint uk_competition_name
+        unique (competition_id, name)
 )
     comment '团队表';
 
