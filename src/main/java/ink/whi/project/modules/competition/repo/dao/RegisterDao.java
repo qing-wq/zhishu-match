@@ -3,6 +3,8 @@ package ink.whi.project.modules.competition.repo.dao;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ink.whi.project.common.enums.YesOrNoEnum;
+import ink.whi.project.common.exception.BusinessException;
+import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.modules.competition.repo.entity.RegisterDO;
 import ink.whi.project.modules.competition.repo.mapper.RegisterMapper;
 import org.springframework.stereotype.Repository;
@@ -46,5 +48,21 @@ public class RegisterDao extends ServiceImpl<RegisterMapper, RegisterDO> {
         }
 
         return record.getCompetitionId();
+    }
+
+    public void updateGroupStatus(Long competitionId, Long userId, Integer code) {
+        lambdaUpdate().eq(RegisterDO::getCompetitionId, competitionId)
+                .eq(RegisterDO::getUserId, userId)
+                .set(RegisterDO::getGroupStatus, code);
+    }
+
+    public Integer getGroupStatus(Long competitionId, Long userId) {
+        RegisterDO record = lambdaQuery().eq(RegisterDO::getCompetitionId, competitionId)
+                .eq(RegisterDO::getUserId, userId)
+                .one();
+        if (record == null) {
+            throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "未报名该比赛");
+        }
+        return record.getGroupStatus();
     }
 }

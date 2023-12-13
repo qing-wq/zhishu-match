@@ -1,6 +1,5 @@
 package ink.whi.project.common.domain.dto;
 
-import ink.whi.project.modules.team.repo.entity.TeamMemberDO;
 import lombok.Data;
 
 import java.io.Serial;

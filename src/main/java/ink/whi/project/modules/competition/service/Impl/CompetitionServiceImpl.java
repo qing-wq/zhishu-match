@@ -7,6 +7,7 @@ import ink.whi.project.common.domain.dto.CompetitionDTO;
 import ink.whi.project.common.domain.page.PageParam;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.req.CompetitionUpdReq;
+import ink.whi.project.common.enums.GroupStatusEnum;
 import ink.whi.project.common.enums.YesOrNoEnum;
 import ink.whi.project.common.exception.BusinessException;
 import ink.whi.project.common.exception.StatusEnum;
@@ -146,13 +147,41 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
     }
 
     @Override
-    public CompetitionDTO queryCompetion(Long competitionId) {
+    public CompetitionDTO queryCompetitionInfo(Long competitionId) {
         CompetitionDO competition = getById(competitionId);
         return CompetitionConverter.toDto(competition);
     }
 
+    /**
+     * 获取用户参加的比赛id
+     * @param userId
+     * @return
+     */
     @Override
     public Long getUserCompetition(Long userId) {
         return registerDao.listUserCompetition(userId);
+    }
+
+    /**
+     * 更新组队状态
+     * @param competitionId
+     * @param userId
+     * @param groupStatusEnum
+     */
+    @Override
+    public void updateGroupStatus(Long competitionId, Long userId, GroupStatusEnum groupStatusEnum) {
+        registerDao.updateGroupStatus(competitionId, userId, groupStatusEnum.getCode());
+    }
+
+    /**
+     * 查询用户组队状态
+     * @param competitionId
+     * @param userId
+     * @return
+     */
+    @Override
+    public GroupStatusEnum queryUserGroupStatus(Long competitionId, Long userId) {
+        Integer status = registerDao.getGroupStatus(competitionId, userId);
+        return GroupStatusEnum.formCode(status);
     }
 }

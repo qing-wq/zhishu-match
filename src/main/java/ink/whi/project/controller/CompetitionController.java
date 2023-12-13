@@ -39,7 +39,7 @@ public class CompetitionController extends BaseRestController {
      * @return
      */
     @Permission(role = UserRole.ADMIN)
-    @PostMapping("/create")
+//    @PostMapping("/create")
     public ResVo<String> create(@Validated @RequestBody CompetitionSaveReq req){
         CompetitionDO competitionDO = new CompetitionDO();
         BeanUtils.copyProperties(req, competitionDO);
@@ -57,7 +57,7 @@ public class CompetitionController extends BaseRestController {
      * @param pageSize
      * @return
      */
-    @GetMapping
+//    @GetMapping
     public ResVo<PageVo<CompetitionDO>> list(@RequestParam(name = "page", required = false) Long page,
                                              @RequestParam(name = "pageSize", required = false) Long pageSize){
 
@@ -72,7 +72,7 @@ public class CompetitionController extends BaseRestController {
      * @return
      */
     @Permission(role = UserRole.ADMIN)
-    @PutMapping
+//    @PutMapping
     public ResVo<String> update(@Validated @RequestBody CompetitionUpdReq req){
         boolean update = competitionService.update(req);
         if(update){
@@ -88,7 +88,7 @@ public class CompetitionController extends BaseRestController {
      * @return
      */
     @Permission(role = UserRole.ADMIN)
-    @DeleteMapping("/{id}")
+//    @DeleteMapping("/{id}")
     public ResVo<String> delete(@PathVariable("id") Long id){
         boolean delete = competitionService.delete(id);
         if(delete){
@@ -103,10 +103,10 @@ public class CompetitionController extends BaseRestController {
      * @param id
      * @return
      */
-    @GetMapping(path = "/detail/{id}")
+//    @GetMapping(path = "/detail/{id}")
     public ResVo<CompetitionDetailVo> detail(@PathVariable("id") Long id){
         CompetitionDetailVo vo = new CompetitionDetailVo();
-        CompetitionDTO competition = competitionService.queryCompetion(id);
+        CompetitionDTO competition = competitionService.queryCompetitionInfo(id);
         vo.setCompetition(competition);
         return ResVo.ok(vo);
     }
