@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 用户报名部分">
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/entity/TeamDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/entity/TeamDO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +42,7 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -137,6 +137,7 @@
       <workItem from="1701845504470" duration="21452000" />
       <workItem from="1701969437453" duration="2446000" />
       <workItem from="1702002801931" duration="45808000" />
+      <workItem from="1702214230851" duration="133000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
