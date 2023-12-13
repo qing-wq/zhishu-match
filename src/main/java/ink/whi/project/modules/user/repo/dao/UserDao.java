@@ -11,6 +11,8 @@ import ink.whi.project.modules.user.repo.entity.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author: qing
  * @Date: 2023/12/4
@@ -40,5 +42,11 @@ public class UserDao extends ServiceImpl<UserInfoMapper, UserInfoDO> {
         return lambdaQuery().eq(UserInfoDO::getUserId, userId)
                 .eq(UserInfoDO::getDeleted, YesOrNoEnum.NO.getCode())
                 .one();
+    }
+
+    public List<UserInfoDO> listByUserIds(List<Long> userIds) {
+        return lambdaQuery().in(UserInfoDO::getUserId, userIds)
+                .eq(UserInfoDO::getDeleted, YesOrNoEnum.NO.getCode())
+                .list();
     }
 }

@@ -1,6 +1,7 @@
 package ink.whi.project.common.domain.req;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serial;
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @Date: 2023/12/8
  */
 @Data
+@NoArgsConstructor
 public class TeamSaveReq implements Serializable {
     @Serial
     private static final long serialVersionUID = -8348410466069107725L;
@@ -18,6 +20,7 @@ public class TeamSaveReq implements Serializable {
     /**
      * 比赛id
      */
+    @NotNull
     private Long competitionId;
 
     /**
