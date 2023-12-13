@@ -30,6 +30,10 @@ public class UserConverter {
     }
 
     public static UserDO toDo(UserSaveReq req) {
+        if (req == null) {
+            return null;
+        }
+
         UserDO user = new UserDO();
         user.setAccount(req.getEmail());
         user.setPassword(req.getPassword());
@@ -40,6 +44,7 @@ public class UserConverter {
         if (req == null) {
             return null;
         }
+
         UserInfoDO info = new UserInfoDO();
         BeanUtils.copyProperties(req, info);
         info.setRealName(req.getName());

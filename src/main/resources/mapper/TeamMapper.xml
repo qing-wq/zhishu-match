@@ -8,6 +8,6 @@
                  left join team t on t.id = tm.team_id
         where t.competition_id = #{competition}
           and tm.user_id = #{userId}
-          and tm.status = ${ink.whi.project.common.enums.TeamStatusEnum@JOINED.code}
+          and tm.status = ${@ink.whi.project.common.enums.TeamStatusEnum@JOINED.code}
     </select>
 </mapper>

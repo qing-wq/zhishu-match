@@ -2,6 +2,7 @@ package ink.whi.project.modules.competition.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
+import ink.whi.project.common.domain.dto.CompetitionDTO;
 import ink.whi.project.common.domain.page.PageParam;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.req.CompetitionUpdReq;
@@ -30,4 +31,8 @@ public interface CompetitionService extends IService<CompetitionDO> {
     void signUp(Long competitionId, Long userId);
 
     List<BaseUserInfoDTO> queryCompetitionUser(Long competitionId);
+
+    CompetitionDTO queryCompetion(Long id);
+
+    Long getUserCompetition(Long userId);
 }

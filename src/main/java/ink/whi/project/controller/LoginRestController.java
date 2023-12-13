@@ -7,8 +7,10 @@ import ink.whi.project.common.annotition.permission.UserRole;
 import ink.whi.project.common.context.ReqInfoContext;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.req.UserSaveReq;
+import ink.whi.project.common.domain.vo.UserInfoVo;
 import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.controller.helper.LoginHelper;
+import ink.whi.project.modules.competition.service.CompetitionService;
 import ink.whi.project.modules.user.service.UserService;
 import ink.whi.project.common.utils.JwtUtil;
 import ink.whi.project.common.utils.SessionUtil;
@@ -34,6 +36,9 @@ public class LoginRestController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CompetitionService competitionService;
 
     @Autowired
     private LoginHelper loginHelper;
@@ -117,8 +122,11 @@ public class LoginRestController {
      */
     @Permission(role = UserRole.LOGIN)
     @GetMapping(path = "info")
-    public ResVo<BaseUserInfoDTO> user() {
-        BaseUserInfoDTO info = ReqInfoContext.getReqInfo().getUser();
-        return ResVo.ok(info);
+    public ResVo<UserInfoVo> info() {
+        BaseUserInfoDTO user = ReqInfoContext.getReqInfo().getUser();
+        UserInfoVo vo = new UserInfoVo();
+        vo.setUser(user);
+        vo.setCompetitionId(competitionService.getUserCompetition(user.getUserId()));
+        return ResVo.ok(vo);
     }
 }

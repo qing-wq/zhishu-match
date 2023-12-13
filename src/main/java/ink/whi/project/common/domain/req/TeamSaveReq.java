@@ -1,6 +1,7 @@
 package ink.whi.project.common.domain.req;
 
 import lombok.Data;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -27,5 +28,6 @@ public class TeamSaveReq implements Serializable {
     /**
      * 队伍名称
      */
+    @NotNull
     private String name;
 }
