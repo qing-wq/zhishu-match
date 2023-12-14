@@ -10,15 +10,13 @@ import ink.whi.project.modules.competition.repo.entity.RegisterDO;
 import ink.whi.project.modules.competition.service.CompetitionService;
 import ink.whi.project.modules.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * 报名接口
+ *
  * @author: qing
  * @Date: 2023/12/9
  */
@@ -34,6 +32,7 @@ public class RegisterRestController {
 
     /**
      * 用户报名
+     *
      * @param competitionId
      * @return
      */
@@ -46,11 +45,13 @@ public class RegisterRestController {
 
     /**
      * 删除用户报名信息
+     *
      * @param userId
      * @return
      */
-    @GetMapping(path = "status")
-    public ResVo<String> status(@RequestParam Long userId,@RequestParam Long competitionId) {
+    @Permission(role = UserRole.ADMIN)
+    @DeleteMapping(path = "status")
+    public ResVo<String> status(@RequestParam Long userId, @RequestParam Long competitionId) {
         registerDao.lambdaUpdate().eq(RegisterDO::getUserId, userId)
                 .eq(RegisterDO::getCompetitionId, competitionId)
                 .remove();

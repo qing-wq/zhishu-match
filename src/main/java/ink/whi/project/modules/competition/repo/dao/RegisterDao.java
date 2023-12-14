@@ -30,9 +30,13 @@ public class RegisterDao extends ServiceImpl<RegisterMapper, RegisterDO> {
         return CollectionUtils.isEmpty(list) ? Collections.emptyList() : list.stream().map(RegisterDO::getUserId).toList();
     }
 
-    public RegisterDO getRecord(Long userId, Long competitionId) {
+    /**
+     * 获取用户报名记录
+     * @param userId
+     * @return
+     */
+    public RegisterDO getRecord(Long userId) {
         return lambdaQuery().eq(RegisterDO::getUserId, userId)
-                .eq(RegisterDO::getCompetitionId, competitionId)
                 .eq(RegisterDO::getDeleted, YesOrNoEnum.NO.getCode())
                 .one();
     }
