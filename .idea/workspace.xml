@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 用户报名部分">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/config/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/ScheduleTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/ForumExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/ForumExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/feign/RankApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/rest_template/RankApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/feign/req/EvaluateReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/rest_template/req/EvaluateReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/feign/resp/EvaluateResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/rest_template/resp/EvaluateResp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/feign/resp/UploadResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/rest_template/resp/UploadResp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/RestTemplateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/RestTemplateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RankController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RankController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 @MapperScan(basePackages = "ink.whi.project.modules.**.repo")
 @EnableAspectJAutoProxy
+@EnableScheduling
 public class ApplicationRun implements WebMvcConfigurer {
 
     @Autowired

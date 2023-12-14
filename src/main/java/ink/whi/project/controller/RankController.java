@@ -45,16 +45,15 @@ public class RankController extends BaseRestController {
         this.redisTemplate = redisTemplate;
     }
     private Integer getValueByKey(String key) {
-        String s = redisTemplate.opsForValue().get(PREFIX + "_" + key);
-        return s == null ? null : Integer.parseInt(redisTemplate.opsForValue().get(PREFIX + "_" + key));
+        String s = redisTemplate.opsForValue().get(PREFIX + ":" + key);
+        return s == null ? null : Integer.parseInt(redisTemplate.opsForValue().get(PREFIX + ":" + key));
     }
     private void saveValueByKey(String key, Long value) {
-        redisTemplate.opsForValue().set(PREFIX + "_" + key, value.toString());
+        redisTemplate.opsForValue().set(PREFIX + ":" + key, value.toString());
     }
     private Long incrementValue(String key) {
-        return redisTemplate.opsForValue().increment(PREFIX + "_" + key);
+        return redisTemplate.opsForValue().increment(PREFIX + ":" + key);
     }
-
 
 
 
