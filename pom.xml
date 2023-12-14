@@ -37,6 +37,7 @@
         <log4jdbc.version>1.16</log4jdbc.version>
     </properties>
 
+
     <dependencies>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -180,7 +181,14 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
+
+
+
+
     </dependencies>
+
+
 
     <build>
         <plugins>

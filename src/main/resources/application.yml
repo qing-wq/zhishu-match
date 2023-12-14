@@ -21,3 +21,4 @@ security:
 logging:
   level:
     root: info
+

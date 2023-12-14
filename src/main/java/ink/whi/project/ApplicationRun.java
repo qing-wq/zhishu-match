@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
+
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -29,15 +30,6 @@ public class ApplicationRun implements WebMvcConfigurer {
         registry.addInterceptor(authInterceptor).addPathPatterns("/**")
                 .excludePathPatterns("/error");
     }
-
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/competition")
-//                .allowedOrigins("*")
-//                .allowedMethods("POST")
-//                .allowCredentials(true);
-//    }
-
 
 
     public static void main(String[] args) {
