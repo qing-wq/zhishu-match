@@ -1,6 +1,7 @@
 package ink.whi.project.modules.rank.repo.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import ink.whi.project.common.domain.base.BaseDO;
 import lombok.Data;
@@ -13,13 +14,16 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-@TableName("rank")
+@TableName("`rank`")
 public class RankDO extends BaseDO {
 
     Long userId;
 
+    @TableField(value = "`status`", exist = true)
     String status;
 
     Double score;
+
+    Long competitionId;
 
 }

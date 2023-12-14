@@ -17,4 +17,6 @@ public interface RankService {
 
     public Integer getRankWithUserInfoCount(Long competitionId);
 
+    public Integer insert(Long userId, Double score, Long competitionId);
+
 }

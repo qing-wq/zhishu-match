@@ -1,8 +1,10 @@
 package ink.whi.project.controller;
 
+import ink.whi.project.common.context.ReqInfoContext;
 import ink.whi.project.common.domain.dto.RankUserDTO;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.vo.ResVo;
+import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.common.feign.req.EvaluateReq;
 import ink.whi.project.common.feign.resp.EvaluateResp;
 import ink.whi.project.common.feign.resp.UploadResp;
@@ -33,6 +35,8 @@ public class RankController extends BaseRestController {
     @Autowired
     RestTemplateUtil restTemplateUtil;
 
+
+
     @GetMapping
     public ResVo<PageVo<RankUserDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
                                            @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
@@ -46,20 +50,27 @@ public class RankController extends BaseRestController {
 
 
     @PostMapping("/upload")
-
     public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file) throws IOException {
-        log.info("Received file: {}", file.getOriginalFilename());
 
+        /**
+         * 上传文件并且测评分数
+         */
         String name = restTemplateUtil.uploadFile(file.getBytes(), file.getOriginalFilename());
-
         String url = "http://10.60.98.106:7860";
-        int size = 8888;
-
-        log.info("fileUrl:{}", name);
-        EvaluateReq req = new EvaluateReq(url, name, size);
+        EvaluateReq req = new EvaluateReq(url, name, (int) file.getSize());
         EvaluateResp evaluate = restTemplateUtil.evaluate(req);
-        log.info("Evaluate:{}", evaluate.toString());
-        return ResVo.ok("本次测评的分数为：" + evaluate.getData().get(0));
+        Double score = Double.valueOf(evaluate.getData().get(0));
+        /**
+         * 往数据库中插入此评测记录
+         */
+        Long userId = ReqInfoContext.getReqInfo().getUserId();
+        Integer insert = rankService.insert(userId, score, 1L);
+        if(insert > 0){
+            return ResVo.ok("本次测评的分数为：" + score);
+        }else{
+            return ResVo.fail(StatusEnum.UNEXPECT_ERROR, "测评失败");
+        }
+
     }
 
 }

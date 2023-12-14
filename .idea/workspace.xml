@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/config/RestTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/feign/RankApi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/feign/req/EvaluateReq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/feign/resp/EvaluateResp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/feign/resp/UploadResp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/RestTemplateUtil.java" afterDir="false" />
+    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 用户报名部分">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RankController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RankController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/repo/entity/RankDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/repo/entity/RankDO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/service/RankService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/service/RankService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/service/impl/RankServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/service/impl/RankServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
