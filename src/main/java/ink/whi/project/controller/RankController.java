@@ -1,5 +1,7 @@
 package ink.whi.project.controller;
 
+import ink.whi.project.common.annotition.permission.Permission;
+import ink.whi.project.common.annotition.permission.UserRole;
 import ink.whi.project.common.context.ReqInfoContext;
 import ink.whi.project.common.domain.dto.RankUserDTO;
 import ink.whi.project.common.domain.page.PageVo;
@@ -67,7 +69,7 @@ public class RankController extends BaseRestController {
         return ResVo.ok(pageVo);
     }
 
-
+    @Permission(role = UserRole.LOGIN)
     @PostMapping("/upload")
     public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file) throws IOException {
 
