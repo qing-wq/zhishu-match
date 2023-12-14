@@ -1,4 +1,4 @@
-package ink.whi.project.common.feign;
+package ink.whi.project.common.rest_template;
 
 /**
  * @Description

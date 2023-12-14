@@ -4,15 +4,16 @@ import ink.whi.project.common.context.ReqInfoContext;
 import ink.whi.project.common.domain.dto.RankUserDTO;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.vo.ResVo;
+import ink.whi.project.common.exception.BusinessException;
 import ink.whi.project.common.exception.StatusEnum;
-import ink.whi.project.common.feign.req.EvaluateReq;
-import ink.whi.project.common.feign.resp.EvaluateResp;
-import ink.whi.project.common.feign.resp.UploadResp;
+import ink.whi.project.common.rest_template.req.EvaluateReq;
+import ink.whi.project.common.rest_template.resp.EvaluateResp;
 import ink.whi.project.common.utils.RestTemplateUtil;
 import ink.whi.project.controller.base.BaseRestController;
 import ink.whi.project.modules.rank.service.RankService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,6 +37,24 @@ public class RankController extends BaseRestController {
     RestTemplateUtil restTemplateUtil;
 
 
+    private final RedisTemplate<String, String> redisTemplate;
+    private static final String PREFIX = "NUM_OF_TIMES";
+    public RankController(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
+    private Integer getValueByKey(String key) {
+        String s = redisTemplate.opsForValue().get(PREFIX + "_" + key);
+        return s == null ? null : Integer.parseInt(redisTemplate.opsForValue().get(PREFIX + "_" + key));
+    }
+    private void saveValueByKey(String key, Long value) {
+        redisTemplate.opsForValue().set(PREFIX + "_" + key, value.toString());
+    }
+    private Long incrementValue(String key) {
+        return redisTemplate.opsForValue().increment(PREFIX + "_" + key);
+    }
+
+
+
 
     @GetMapping
     public ResVo<PageVo<RankUserDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
@@ -52,25 +71,58 @@ public class RankController extends BaseRestController {
     @PostMapping("/upload")
     public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file) throws IOException {
 
-        /**
-         * 上传文件并且测评分数
-         */
+        //限制次数
+        int time = 0;
+        Long userId = ReqInfoContext.getReqInfo().getUserId();
+        Integer valueByKey = getValueByKey(userId.toString());
+        log.info("redis times:{}", valueByKey);
+        if(valueByKey != null){
+            time = valueByKey;
+        }
+        if(time >= 5)throw new BusinessException(StatusEnum.UNEXPECT_ERROR,"上传次数超过5次！");
+
+
+        String fileExtension = getFileExtension(file.getOriginalFilename());
+        // 处理格式问题
+        if(!fileExtension.equals("csv"))throw new BusinessException(StatusEnum.UNEXPECT_ERROR," 请上传csv文件");
+
+        // 上传文件并且测评分数
         String name = restTemplateUtil.uploadFile(file.getBytes(), file.getOriginalFilename());
+
         String url = "http://10.60.98.106:7860";
         EvaluateReq req = new EvaluateReq(url, name, (int) file.getSize());
-        EvaluateResp evaluate = restTemplateUtil.evaluate(req);
+
+
+        EvaluateResp evaluate;
+        try{
+            evaluate = restTemplateUtil.evaluate(req);
+        }catch(Exception e){
+            log.warn("error:{}", e.getMessage());
+            throw new BusinessException(StatusEnum.UNEXPECT_ERROR, "文件无效！");
+        }
+
         Double score = Double.valueOf(evaluate.getData().get(0));
-        /**
-         * 往数据库中插入此评测记录
-         */
-        Long userId = ReqInfoContext.getReqInfo().getUserId();
+        // 往数据库中插入此评测记录
         Integer insert = rankService.insert(userId, score, 1L);
+
         if(insert > 0){
+            if(time == 0){
+                saveValueByKey(String.valueOf(userId), 1L);
+            }else{
+                incrementValue(String.valueOf(userId));
+            }
             return ResVo.ok("本次测评的分数为：" + score);
         }else{
             return ResVo.fail(StatusEnum.UNEXPECT_ERROR, "测评失败");
         }
 
+    }
+
+    public static String getFileExtension(String filename) {
+        if (filename != null && filename.contains(".")) {
+            return filename.substring(filename.lastIndexOf(".") + 1);
+        }
+        throw new BusinessException(StatusEnum.UNEXPECT_ERROR, "文件名无效！请上传格式为csv的文件");
     }
 
 }

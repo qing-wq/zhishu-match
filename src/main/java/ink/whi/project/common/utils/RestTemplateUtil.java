@@ -1,7 +1,9 @@
 package ink.whi.project.common.utils;
 
-import ink.whi.project.common.feign.req.EvaluateReq;
-import ink.whi.project.common.feign.resp.EvaluateResp;
+import ink.whi.project.common.exception.BusinessException;
+import ink.whi.project.common.exception.StatusEnum;
+import ink.whi.project.common.rest_template.req.EvaluateReq;
+import ink.whi.project.common.rest_template.resp.EvaluateResp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -48,6 +50,8 @@ public class RestTemplateUtil {
         EvaluateResp evaluateResp = restTemplate.postForObject(url, requestEntity, EvaluateResp.class);
 
         log.info("evaluateResp:{}", evaluateResp.toString());
+        log.info("code:{}", evaluateResp.getData().get(0));
+        if (evaluateResp.getData().get(0).equals("-404"))throw new BusinessException(StatusEnum.UNEXPECT_ERROR, "文件无效！");
         return evaluateResp;
     }
 

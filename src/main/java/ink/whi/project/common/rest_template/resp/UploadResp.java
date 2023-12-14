@@ -1,4 +1,4 @@
-package ink.whi.project.common.feign.resp;
+package ink.whi.project.common.rest_template.resp;
 
 import lombok.Data;
 

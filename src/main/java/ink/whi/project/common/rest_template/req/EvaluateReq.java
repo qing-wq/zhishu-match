@@ -1,4 +1,4 @@
-package ink.whi.project.common.feign.req;
+package ink.whi.project.common.rest_template.req;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
