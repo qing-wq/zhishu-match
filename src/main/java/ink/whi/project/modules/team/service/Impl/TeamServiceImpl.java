@@ -159,4 +159,17 @@ public class TeamServiceImpl implements TeamService {
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "用户已组队");
         }
     }
+
+    @Override
+    public void quit(Long teamId, Long userId) {
+        TeamDO team = teamDao.getById(teamId);
+        if (team == null) {
+            throw BusinessException.newInstance(StatusEnum.RECORDS_NOT_EXISTS, "队伍不存在: " + teamId);
+        }
+
+        teamMemberDao.quit(teamId, userId);
+
+        // 组队状态更新
+        competitionService.updateGroupStatus(team.getCompetitionId(), userId, GroupStatusEnum.UNGROUP);
+    }
 }

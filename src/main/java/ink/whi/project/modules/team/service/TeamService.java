@@ -17,4 +17,6 @@ public interface TeamService {
     TeamInfoDTO queryTeamInfo(Long competitionId, Long userId);
 
     TeamInfoDTO queryTeamByName(Long competitionId, String name);
+
+    void quit(Long teamId, Long userId);
 }

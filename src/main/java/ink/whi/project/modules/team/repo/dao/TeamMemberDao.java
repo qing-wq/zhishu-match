@@ -73,4 +73,11 @@ public class TeamMemberDao extends ServiceImpl<TeamMemberMapper, TeamMemberDO> {
     public List<TeamMemberDTO> listTeamMember(Long teamId) {
         return baseMapper.listMember(teamId);
     }
+
+    public void quit(Long teamId, Long userId) {
+        lambdaUpdate().eq(TeamMemberDO::getUserId, userId)
+                .eq(TeamMemberDO::getTeamId, teamId)
+                .set(TeamMemberDO::getStatus, TeamStatusEnum.NOT_JOIN.getCode())
+                .update();
+    }
 }

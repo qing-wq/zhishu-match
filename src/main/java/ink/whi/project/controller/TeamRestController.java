@@ -89,4 +89,17 @@ public class TeamRestController {
         TeamInfoDTO dto = teamService.queryTeamByName(competitionId, name);
         return ResVo.ok(dto);
     }
+
+    /**
+     * 退出队伍
+     *
+     * @param teamId
+     * @return
+     */
+    @Permission(role = UserRole.LOGIN)
+    @GetMapping(path = "quit")
+    public ResVo<String> quit(@RequestParam Long teamId) {
+        teamService.quit(teamId, ReqInfoContext.getReqInfo().getUserId());
+        return ResVo.ok("ok");
+    }
 }
