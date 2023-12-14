@@ -15,6 +15,7 @@ import ink.whi.project.modules.team.repo.dao.TeamMemberDao;
 import ink.whi.project.modules.team.repo.entity.TeamDO;
 import ink.whi.project.modules.team.repo.entity.TeamMemberDO;
 import ink.whi.project.modules.team.service.TeamService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,7 @@ import java.util.Objects;
  * @author: qing
  * @Date: 2023/12/8
  */
+@Slf4j
 @Service
 public class TeamServiceImpl implements TeamService {
 
@@ -43,6 +45,7 @@ public class TeamServiceImpl implements TeamService {
     public Long createTeam(TeamSaveReq req) {
         Long userId = req.getCaptain();
         Long competitionId = req.getCompetitionId();
+
         checkGrouped(competitionId, userId);
 
         TeamDO record = teamDao.queryByTeamName(competitionId, req.getName());

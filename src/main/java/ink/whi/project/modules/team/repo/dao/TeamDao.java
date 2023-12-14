@@ -1,28 +1,11 @@
 package ink.whi.project.modules.team.repo.dao;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
-import ink.whi.project.common.domain.dto.TeamMemberDTO;
-import ink.whi.project.common.enums.TeamStatusEnum;
 import ink.whi.project.common.enums.YesOrNoEnum;
-import ink.whi.project.common.exception.BusinessException;
-import ink.whi.project.common.exception.StatusEnum;
-import ink.whi.project.modules.team.convreter.TeamConverter;
 import ink.whi.project.modules.team.repo.entity.TeamDO;
-import ink.whi.project.modules.team.repo.entity.TeamMemberDO;
 import ink.whi.project.modules.team.repo.mapper.TeamMapper;
-import ink.whi.project.modules.team.repo.mapper.TeamMemberMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * @author: qing

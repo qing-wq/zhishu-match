@@ -29,6 +29,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Description
@@ -123,9 +124,12 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
             throw BusinessException.newInstance(StatusEnum.UNEXPECT_ERROR, "比赛已截止报名" + competitionId);
         }
 
-        RegisterDO record = registerDao.getRecord(userId, competitionId);
+        RegisterDO record = registerDao.getRecord(userId);
         if (record != null) {
-            throw BusinessException.newInstance(StatusEnum.RECORDS_ALREADY_EXISTS, "用户已报名");
+            if (!Objects.equals(record.getCompetitionId(), competitionId)) {
+                throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "您已报名其他比赛");
+            }
+            throw BusinessException.newInstance(StatusEnum.RECORDS_ALREADY_EXISTS, "您已报名该比赛");
         }
 
         record = new RegisterDO();

@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
         userInfo.setUserId(user.getId());
 
         // 生成默认初始用户名
-        userInfo.setUserName("zhishu_" + UUID.randomUUID().toString().replace("-", "").substring(0, 8));
+        userInfo.setUserName("H3C_" + UUID.randomUUID().toString().replace("-", "").substring(0, 8));
         userDao.save(userInfo);
         return user.getId();
     }

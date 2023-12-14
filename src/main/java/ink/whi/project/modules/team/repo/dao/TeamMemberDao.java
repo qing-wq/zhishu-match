@@ -46,6 +46,7 @@ public class TeamMemberDao extends ServiceImpl<TeamMemberMapper, TeamMemberDO> {
         } else {
             record = new TeamMemberDO();
             record.setUserId(userId);
+            record.setTeamId(teamId);
             record.setStatus(TeamStatusEnum.WAIT.getCode());
             save(record);
         }
