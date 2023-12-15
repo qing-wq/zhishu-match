@@ -174,7 +174,7 @@ public class TeamServiceImpl implements TeamService {
         }
 
         teamMemberDao.quit(teamId, userId);
-        // 退出团队自动退出比赛
+        // 退出团队自动取消报名
         competitionService.cancelRegister(userId, team.getCompetitionId());
     }
 }

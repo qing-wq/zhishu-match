@@ -47,7 +47,7 @@ public class EmailUtil {
             javaMailSender.send(mimeMailMessage);
             return true;
         } catch (Exception e) {
-            log.warn("sendEmail error to {}, {}", email.getTo(), e);
+            log.warn("sendEmail error to {}, {}", email.getTo(), e.toString());
             return false;
         }
     }
