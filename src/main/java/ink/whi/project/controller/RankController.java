@@ -60,7 +60,7 @@ public class RankController extends BaseRestController {
     @GetMapping
     public ResVo<PageVo<RankUserDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
                                            @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
-                                            @RequestParam(name = "competitionId") Long competitionId){
+                                           @RequestParam(name = "competitionId") Long competitionId){
         List<RankUserDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
         Integer count = rankService.getRankWithUserInfoCount(competitionId);
         PageVo<RankUserDTO> pageVo = PageVo.build(list, pageSize, page, count);

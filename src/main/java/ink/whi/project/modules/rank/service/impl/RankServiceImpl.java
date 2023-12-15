@@ -37,6 +37,6 @@ public class RankServiceImpl implements RankService {
                 .setStatus("succeed")
                 .setUserId(userId)
                 .setCompetitionId(competitionId);
-       return mapper.insert(rankDO);
+        return mapper.insert(rankDO);
     }
 }
