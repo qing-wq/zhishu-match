@@ -1,6 +1,5 @@
 package ink.whi.project.common.domain.dto;
 
-import io.swagger.models.auth.In;
 import lombok.Data;
 
 import java.io.Serial;

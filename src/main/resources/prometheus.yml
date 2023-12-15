@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs: 
+  # 固定prometheus配置 -- 必须
+  - job_name: 'prometheus'
+    static_configs: 
+    - targets:  ［'127.0.0.1:9090']
+  # 监听服务
+  - job_name: 'zhishu-match'
+  # 5s 获取一次数据
+    scrape_interval: 5s
+  # 接口地址固定
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+    - targets: ［'127.0.0.1:8000'］ # 服务地址

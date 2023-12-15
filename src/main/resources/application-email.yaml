@@ -17,3 +17,5 @@ spring:
           starttls:
             enable: true
             required: true
+  freemarker:
+    template-loader-path: classpath:/templates/

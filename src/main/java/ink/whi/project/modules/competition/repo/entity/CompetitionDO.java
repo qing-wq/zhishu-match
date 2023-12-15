@@ -3,7 +3,6 @@ package ink.whi.project.modules.competition.repo.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import ink.whi.project.common.domain.base.BaseDO;
 import ink.whi.project.common.enums.CompetitionTypeEnum;
-import io.swagger.models.auth.In;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

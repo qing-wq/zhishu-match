@@ -6,10 +6,15 @@ server:
   address: 0.0.0.0
 
 spring:
+  application:
+    name: zhishu-match
   main:
     allow-circular-references: true
   config:
-    import: application-dal.yaml, application-email.yaml
+    import:
+      - application-dal.yaml
+      - application-email.yaml
+      - application-monitor.yaml
 
 database:
   name: zhishu-match
