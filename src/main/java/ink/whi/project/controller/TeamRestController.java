@@ -6,9 +6,15 @@ import ink.whi.project.common.context.ReqInfoContext;
 import ink.whi.project.common.domain.dto.TeamInfoDTO;
 import ink.whi.project.common.domain.req.TeamSaveReq;
 import ink.whi.project.common.domain.vo.ResVo;
+import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.modules.team.service.TeamService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * 组队接口
@@ -31,7 +37,7 @@ public class TeamRestController {
      */
     @Permission(role = UserRole.LOGIN)
     @PostMapping(path = "create")
-    public ResVo<Long> createTeam(@RequestBody TeamSaveReq req) {
+    public ResVo<Long> createTeam(@Validated @RequestBody TeamSaveReq req) {
         Long userId = ReqInfoContext.getReqInfo().getUserId();
         req.setCaptain(userId);
         Long teamId = teamService.createTeam(req);
@@ -41,13 +47,17 @@ public class TeamRestController {
     /**
      * 加入队伍
      *
-     * @param teamId
+     * @param teamName
      * @return
      */
     @Permission(role = UserRole.LOGIN)
     @GetMapping(path = "join")
-    public ResVo<String> join(@RequestParam Long teamId) {
-        teamService.join(teamId, ReqInfoContext.getReqInfo().getUserId());
+    public ResVo<String> join(@RequestParam String teamName) {
+        if (StringUtils.isBlank(teamName)) {
+            return ResVo.fail(StatusEnum.ILLEGAL_ARGUMENTS_MIXED, "队伍名称不能为空");
+        }
+
+        teamService.join(teamName, ReqInfoContext.getReqInfo().getUserId());
         return ResVo.ok("申请成功，待队长通过");
     }
 
@@ -88,5 +98,19 @@ public class TeamRestController {
     public ResVo<TeamInfoDTO> team(@RequestParam String name, @RequestParam Long competitionId) {
         TeamInfoDTO dto = teamService.queryTeamByName(competitionId, name);
         return ResVo.ok(dto);
+    }
+
+    /**
+     * 退出队伍
+     *
+     * @param teamId
+     * @return
+     */
+    @Permission(role = UserRole.LOGIN)
+    @GetMapping(path = "quit")
+    public ResVo<String> quit(@RequestParam Long teamId) {
+        // 退出团队
+        teamService.quit(teamId, ReqInfoContext.getReqInfo().getUserId());
+        return ResVo.ok("ok");
     }
 }

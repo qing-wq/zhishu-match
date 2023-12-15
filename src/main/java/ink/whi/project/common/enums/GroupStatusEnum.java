@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 public enum GroupStatusEnum {
 
-    NOT_GROUP(0, "未组队"),
+    UNGROUP(0, "未组队"),
     GROUP(1, "已组队")
     ;
 

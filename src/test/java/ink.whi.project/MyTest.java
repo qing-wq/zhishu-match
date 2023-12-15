@@ -22,4 +22,6 @@ public class MyTest extends BasicTest{
     void test2() {
         registerDao.listUserByCompetitionId(1L);
     }
+
+
 }

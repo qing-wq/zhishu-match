@@ -8,6 +8,8 @@ import ink.whi.project.common.enums.GroupStatusEnum;
 import ink.whi.project.common.enums.TeamStatusEnum;
 import ink.whi.project.common.exception.BusinessException;
 import ink.whi.project.common.exception.StatusEnum;
+import ink.whi.project.modules.competition.repo.dao.RegisterDao;
+import ink.whi.project.modules.competition.repo.entity.RegisterDO;
 import ink.whi.project.modules.competition.service.CompetitionService;
 import ink.whi.project.modules.team.convreter.TeamConverter;
 import ink.whi.project.modules.team.repo.dao.TeamDao;
@@ -68,23 +70,27 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void join(Long teamId, Long userId) {
-        TeamDO team = teamDao.getById(teamId);
+//    @Transactional(rollbackFor = Exception.class)
+    public void join(String teamName, Long userId) {
+        TeamDO team = teamDao.lambdaQuery().eq(TeamDO::getName, teamName).one();
         if (team == null) {
-            throw BusinessException.newInstance(StatusEnum.RECORDS_NOT_EXISTS, "队伍不存在: " + teamId);
+            throw BusinessException.newInstance(StatusEnum.RECORDS_NOT_EXISTS, "队伍不存在: " + teamName);
         }
 
         // 判断该用户是否已组队
         checkGrouped(team.getCompetitionId(), userId);
 
         if (isFull(team)) {
+            // 删除用户报名信息
+            competitionService.cancelRegister(userId, team.getCompetitionId());
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "队伍人数已满");
         }
 
-        teamMemberDao.join(teamId, userId);
+        teamMemberDao.join(team, userId);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void agree(Long teamId, Long member) {
         Long userId = ReqInfoContext.getReqInfo().getUserId();
         TeamDO team = teamDao.getById(teamId);
@@ -157,5 +163,18 @@ public class TeamServiceImpl implements TeamService {
         if (status == GroupStatusEnum.GROUP) {
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_OPERATE, "用户已组队");
         }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void quit(Long teamId, Long userId) {
+        TeamDO team = teamDao.getById(teamId);
+        if (team == null) {
+            throw BusinessException.newInstance(StatusEnum.RECORDS_NOT_EXISTS, "队伍不存在: " + teamId);
+        }
+
+        teamMemberDao.quit(teamId, userId);
+        // 退出团队自动退出比赛
+        competitionService.cancelRegister(userId, team.getCompetitionId());
     }
 }

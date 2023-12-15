@@ -112,8 +112,8 @@ public class LoginRestController {
     @Limit(key = "email", limitType = LimitType.IP, count = 1, period = 60)
     @PostMapping(path = "code")
     public ResVo<String> code(@RequestParam("email") String email) {
-        String code = loginHelper.subscribe(email);
-        return ResVo.ok(code);
+        loginHelper.subscribe(email);
+        return ResVo.ok("ok");
     }
 
     /**

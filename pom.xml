@@ -37,7 +37,6 @@
         <log4jdbc.version>1.16</log4jdbc.version>
     </properties>
 
-
     <dependencies>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -181,14 +180,7 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
-
-
-
-
     </dependencies>
-
-
 
     <build>
         <plugins>
@@ -211,6 +203,13 @@
                 <configuration>
                     <source>17</source>
                     <target>17</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,5 +1,6 @@
 package ink.whi.project.modules.competition.service.Impl;
 
+import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ink.whi.project.common.domain.base.BaseDO;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
@@ -187,5 +188,12 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
     public GroupStatusEnum queryUserGroupStatus(Long competitionId, Long userId) {
         Integer status = registerDao.getGroupStatus(competitionId, userId);
         return GroupStatusEnum.formCode(status);
+    }
+
+    @Override
+    public void cancelRegister(Long userId, Long competitionId) {
+        registerDao.lambdaUpdate().eq(RegisterDO::getUserId, userId)
+                .eq(RegisterDO::getCompetitionId, competitionId)
+                .remove();
     }
 }

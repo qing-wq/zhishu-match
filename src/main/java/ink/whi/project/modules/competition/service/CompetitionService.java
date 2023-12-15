@@ -40,4 +40,6 @@ public interface CompetitionService extends IService<CompetitionDO> {
     void updateGroupStatus(Long competitionId, Long userId, GroupStatusEnum groupStatusEnum);
 
     GroupStatusEnum queryUserGroupStatus(Long competitionId, Long userId);
+
+    void cancelRegister(Long userId, Long competitionId);
 }

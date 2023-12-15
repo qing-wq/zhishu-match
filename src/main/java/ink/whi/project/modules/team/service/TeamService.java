@@ -10,11 +10,13 @@ import ink.whi.project.common.domain.req.TeamSaveReq;
 public interface TeamService {
     Long createTeam(TeamSaveReq teamSaveReq);
 
-    void join(Long teamId, Long userId);
+    void join(String teamName, Long userId);
 
     void agree(Long teamId, Long userId);
 
     TeamInfoDTO queryTeamInfo(Long competitionId, Long userId);
 
     TeamInfoDTO queryTeamByName(Long competitionId, String name);
+
+    void quit(Long teamId, Long userId);
 }

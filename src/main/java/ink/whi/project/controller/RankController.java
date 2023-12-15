@@ -64,31 +64,20 @@ public class RankController extends BaseRestController {
 
 
 
-//    @GetMapping
-//    public ResVo<PageVo<RankTeamDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
-//                                           @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
-//                                            @RequestParam(name = "competitionId") Long competitionId){
-//        List<RankTeamDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
-//        Integer count = rankService.getRankWithUserInfoCount(competitionId);
-//        PageVo<RankTeamDTO> pageVo = PageVo.build(list, pageSize, page, count);
-//
-//        return ResVo.ok(pageVo);
-//    }
-
     @GetMapping
-    public ResVo<PageVo<RankTeamDTO>> list(@RequestParam(name = "page",  required = false, defaultValue = "1") Integer page,
+    public ResVo<PageVo<RankUserDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
                                            @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
-                                           @RequestParam(name = "competitionId") Long competitionId){
-        List<RankTeamDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
+                                            @RequestParam(name = "competitionId") Long competitionId){
+        List<RankUserDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
         Integer count = rankService.getRankWithUserInfoCount(competitionId);
-        PageVo<RankTeamDTO> pageVo = PageVo.build(list, pageSize, page, count);
+        PageVo<RankUserDTO> pageVo = PageVo.build(list, pageSize, page, count);
 
         return ResVo.ok(pageVo);
     }
 
     @Permission(role = UserRole.LOGIN)
     @PostMapping("/upload")
-    public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file, @RequestParam Long competitionId) throws IOException {
+    public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file) throws IOException {
 
         //限制次数
         int time = 0;
@@ -116,6 +105,7 @@ public class RankController extends BaseRestController {
 
         String url = "http://10.60.98.106:7860";
         EvaluateReq req = new EvaluateReq(url, name, (int) file.getSize());
+
 
         EvaluateResp evaluate;
         try{
