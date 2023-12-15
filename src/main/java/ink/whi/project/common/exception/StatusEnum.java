@@ -32,7 +32,7 @@ public enum StatusEnum {
     RECORDS_ALREADY_EXISTS(100_404_001, "记录已存在:%s"),
 
     // 系统异常
-    UNEXPECT_ERROR(100_500_001, "非预期异常:%s"),
+    UNEXPECT_ERROR(100_500_001, "服务器冒烟啦，要不稍后再试吧！ %s"),
 
     // 用户相关异常
     LOGIN_FAILED_MIXED(400_403_001, "登录失败:%s"),

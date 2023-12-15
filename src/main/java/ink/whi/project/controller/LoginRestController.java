@@ -109,7 +109,7 @@ public class LoginRestController {
      * @param email
      * @return
      */
-    @Limit(key = "email", limitType = LimitType.IP, count = 1, period = 60)
+    @Limit(key = "email", name = "email", limitType = LimitType.IP, count = 1, period = 60)
     @PostMapping(path = "code")
     public ResVo<String> code(@RequestParam("email") String email) {
         loginHelper.subscribe(email);

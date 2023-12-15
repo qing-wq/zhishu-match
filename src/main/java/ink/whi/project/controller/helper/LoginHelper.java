@@ -8,8 +8,10 @@ import ink.whi.project.common.exception.BusinessException;
 import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.common.utils.CodeGenerateUtil;
 import ink.whi.project.common.utils.EmailUtil;
+import ink.whi.project.modules.mail.MailService;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +27,9 @@ public class LoginHelper {
 
     // key-code  val-email
     private final LoadingCache<String, String> verifyCodeCache;
+
+    @Autowired
+    private MailService mailService;
 
     public LoginHelper() {
         verifyCodeCache = CacheBuilder.newBuilder().maximumSize(300).expireAfterWrite(5, TimeUnit.MINUTES).build(
@@ -50,7 +55,8 @@ public class LoginHelper {
         // send email
         EmailVo vo = new EmailVo();
         vo.setTo(email);
-        vo.setContent(code);
+        vo.setTitle("人工智能学院新华三杯官网账号注册验证码：" + code);
+        vo.setContent(mailService.generateMailContent(code, email));
         boolean success = EmailUtil.sendMail(vo);
         if (!success) {
             throw BusinessException.newInstance(StatusEnum.UNEXPECT_ERROR, "邮件发送失败");

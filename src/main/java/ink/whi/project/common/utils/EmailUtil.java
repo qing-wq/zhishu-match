@@ -45,6 +45,7 @@ public class EmailUtil {
             mimeMessageHelper.setText(email.getContent(), true);
             Thread.currentThread().setContextClassLoader(EmailUtil.class.getClassLoader());
             javaMailSender.send(mimeMailMessage);
+            log.info("success sendEmail to {}", email.getTo());
             return true;
         } catch (Exception e) {
             log.warn("sendEmail error to {}, {}", email.getTo(), e.toString());
