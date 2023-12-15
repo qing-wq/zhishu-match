@@ -1,8 +1,10 @@
 package ink.whi.project.common.domain.req;
 
 import lombok.Data;
-import org.jetbrains.annotations.NotNull;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -19,12 +21,14 @@ public class UserSaveReq implements Serializable {
      * 姓名
      */
     @NotNull
+    @Length(min = 1, max = 10)
     private String name;
 
     /**
      * 学号
      */
     @NotNull
+    @Length(min = 10, max = 10)
     private String studentId;
 
     /**
@@ -36,7 +40,7 @@ public class UserSaveReq implements Serializable {
     /**
      * 账号（邮箱）
      */
-    @NotNull
+    @Email
     private String email;
 
     /**

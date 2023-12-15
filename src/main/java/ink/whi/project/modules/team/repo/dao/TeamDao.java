@@ -39,4 +39,5 @@ public class TeamDao extends ServiceImpl<TeamMapper, TeamDO> {
     public Long getUserTeam(Long competition, Long userId) {
         return baseMapper.selectUserTeam(competition, userId);
     }
+
 }

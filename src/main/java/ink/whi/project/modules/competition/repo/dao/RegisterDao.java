@@ -19,7 +19,6 @@ import java.util.List;
 @Repository
 public class RegisterDao extends ServiceImpl<RegisterMapper, RegisterDO> {
 
-
     public List<Long> listUserByCompetitionId(Long competitionId) {
         // 索引下推优化
         List<RegisterDO> list = lambdaQuery()
@@ -57,7 +56,8 @@ public class RegisterDao extends ServiceImpl<RegisterMapper, RegisterDO> {
     public void updateGroupStatus(Long competitionId, Long userId, Integer code) {
         lambdaUpdate().eq(RegisterDO::getCompetitionId, competitionId)
                 .eq(RegisterDO::getUserId, userId)
-                .set(RegisterDO::getGroupStatus, code);
+                .set(RegisterDO::getGroupStatus, code)
+                .update();
     }
 
     public Integer getGroupStatus(Long competitionId, Long userId) {

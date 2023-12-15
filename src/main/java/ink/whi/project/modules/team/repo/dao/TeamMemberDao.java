@@ -11,6 +11,7 @@ import ink.whi.project.common.enums.TeamStatusEnum;
 import ink.whi.project.common.exception.BusinessException;
 import ink.whi.project.common.exception.StatusEnum;
 import ink.whi.project.modules.team.convreter.TeamConverter;
+import ink.whi.project.modules.team.repo.entity.TeamDO;
 import ink.whi.project.modules.team.repo.entity.TeamMemberDO;
 import ink.whi.project.modules.team.repo.mapper.TeamMapper;
 import ink.whi.project.modules.team.repo.mapper.TeamMemberMapper;
@@ -29,7 +30,8 @@ import java.util.Objects;
 public class TeamMemberDao extends ServiceImpl<TeamMemberMapper, TeamMemberDO> {
 
 
-    public void join(Long teamId, Long userId) {
+    public void join(TeamDO team, Long userId) {
+        Long teamId = team.getId();
         TeamMemberDO record = lambdaQuery().eq(TeamMemberDO::getTeamId, teamId)
                 .eq(TeamMemberDO::getUserId, userId)
                 .one();

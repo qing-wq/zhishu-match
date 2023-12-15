@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="feat: 更新配置">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/enums/GroupStatusEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/enums/GroupStatusEnum.java" afterDir="false" />
+    <list default="true" id="e4384232-b196-463b-a75a-61a375a5116b" name="Changes" comment="feat: 完善参数校验">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/config/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/config/RestTemplateConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/rest_template/RankApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/rest_template/req/EvaluateReq.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/rest_template/resp/EvaluateResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/rest_template/resp/UploadResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/RestTemplateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/utils/ScheduleTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/ApplicationRun.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/AnnouncementReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/AnnouncementReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/TeamSaveReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/TeamSaveReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/UserSaveReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/domain/req/UserSaveReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/BusinessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/BusinessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/ForumExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/common/exception/ForumExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/LoginRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/LoginRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RankController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RankController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RegisterRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/RegisterRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/TeamRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/TeamRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/helper/LoginHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/controller/helper/LoginHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/announcement/service/Impl/AnnouncementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/announcement/service/Impl/AnnouncementServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/dao/RegisterDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/repo/dao/RegisterDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/CompetitionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/CompetitionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/competition/service/Impl/CompetitionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/repo/entity/RankDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/repo/entity/RankDO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/service/RankService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/service/RankService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/service/impl/RankServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/rank/service/impl/RankServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/dao/TeamDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/dao/TeamDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/dao/TeamMemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/repo/dao/TeamMemberDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/service/Impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/service/Impl/TeamServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ink/whi/project/modules/team/service/TeamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dal.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CompilerWorkspaceConfiguration">
-    <option name="REBUILD_ON_DEPENDENCY_CHANGE" value="false" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Enum" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,13 +50,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenRunner">
-    <option name="skipTests" value="true" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 0
 }</component>
-  <component name="ProjectId" id="2WrwKtGArTCzStebW7Mba3YLDKd" />
+  <component name="ProjectId" id="2ZXRPkXzrUARSPeACEdJGKtawWr" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -56,21 +69,17 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "database.data.extractors.current.export.id": "SQL Inserts",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/qing/MyDocuments/code/ideaProject/zhishu-match/src/main/test/java/ink.whi.project",
+    "git-widget-placeholder": "Merging master",
+    "last_opened_file_path": "/Users/qing/MyDocuments/code/ideaProject/zhishu-match-bkp",
     "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.14053535",
+    "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.3222486",
-    "settings.build.tools.auto.reload": "SELECTIVE",
-    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable",
+    "settings.build.tools.auto.reload": "ALL",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -79,34 +88,8 @@
     ]
   }
 }]]></component>
-  <component name="ReactorSettings">
-    <option name="notificationShown" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/test/java/ink.whi.project" />
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/java/ink/whi/project/common" />
-      <recent name="$PROJECT_DIR$/src/main/java/ink/whi/project/common/annotition" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/data" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/main/test/java" />
-    </key>
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="ink.whi.project.controller" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ink.whi.project.common.enums" />
-      <recent name="ink.whi.project.common.domain.dto" />
-      <recent name="ink.whi.project.common.utils" />
-      <recent name="ink.whi.project.common.aspect" />
-      <recent name="ink.whi.project.common.annotition.limit" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Spring Boot.ApplicationRun">
-    <configuration name="MyTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.MyTest.test3">
+    <configuration name="MyTest.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-demo" />
       <extension name="coverage">
         <pattern>
@@ -116,218 +99,38 @@
       </extension>
       <option name="PACKAGE_NAME" value="ink.whi.project" />
       <option name="MAIN_CLASS_NAME" value="ink.whi.project.MyTest" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project-demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ink.whi.project.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ink.whi.project" />
-      <option name="MAIN_CLASS_NAME" value="ink.whi.project.MyTest" />
-      <option name="METHOD_NAME" value="test2" />
+      <option name="METHOD_NAME" value="test3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="ApplicationRun" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="project-demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ink.whi.project.ApplicationRun" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="JUnit.MyTest.test" />
-      <item itemvalue="JUnit.MyTest.test2" />
-      <item itemvalue="Spring Boot.ApplicationRun" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MyTest.test" />
-        <item itemvalue="JUnit.MyTest.test2" />
+        <item itemvalue="JUnit.MyTest.test3" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="683a9610-e45c-4e72-a474-a5a804832adf" name="Changes" comment="" />
-      <created>1697503946237</created>
+      <changelist id="e4384232-b196-463b-a75a-61a375a5116b" name="Changes" comment="feat: 添加退出组队接口" />
+      <created>1702566416024</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1697503946237</updated>
-      <workItem from="1697503947517" duration="644000" />
-      <workItem from="1701753903755" duration="3785000" />
-      <workItem from="1701757834190" duration="3555000" />
-      <workItem from="1701761523492" duration="5248000" />
-      <workItem from="1701776050780" duration="8523000" />
-      <workItem from="1701845504470" duration="21452000" />
-      <workItem from="1701969437453" duration="2446000" />
-      <workItem from="1702002801931" duration="65841000" />
-      <workItem from="1702457898050" duration="38941000" />
+      <updated>1702566416024</updated>
+      <workItem from="1702566417225" duration="45000" />
+      <workItem from="1702566482004" duration="11427000" />
+      <workItem from="1702632362661" duration="628000" />
     </task>
-    <task id="LOCAL-00001" summary="init">
-      <option name="closed" value="true" />
-      <created>1701846620713</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1701846620713</updated>
-    </task>
-    <task id="LOCAL-00002" summary="init">
-      <option name="closed" value="true" />
-      <created>1701938332034</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1701938332034</updated>
-    </task>
-    <task id="LOCAL-00003" summary="feat: 用户模块搭建，接口限流配置">
-      <option name="closed" value="true" />
-      <created>1701963124206</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1701963124206</updated>
-    </task>
-    <task id="LOCAL-00004" summary="feat: 更新配置">
-      <option name="closed" value="true" />
-      <created>1701963646936</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1701963646936</updated>
-    </task>
-    <task id="LOCAL-00005" summary="fix: 修复lua脚本异常">
-      <option name="closed" value="true" />
-      <created>1701969163609</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1701969163609</updated>
-    </task>
-    <task id="LOCAL-00006" summary="feat: 用户信息完善">
-      <option name="closed" value="true" />
-      <created>1702038792202</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1702038792202</updated>
-    </task>
-    <task id="LOCAL-00007" summary="feat: 团队模块搭建">
-      <option name="closed" value="true" />
-      <created>1702095077644</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1702095077644</updated>
-    </task>
-    <task id="LOCAL-00008" summary="feat: 完善组队信息">
-      <option name="closed" value="true" />
-      <created>1702118046181</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1702118046181</updated>
-    </task>
-    <task id="LOCAL-00009" summary="feat: 完善登录接口">
-      <option name="closed" value="true" />
-      <created>1702120681449</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1702120681449</updated>
-    </task>
-    <task id="LOCAL-00010" summary="feat: 完善登录接口">
-      <option name="closed" value="true" />
-      <created>1702127036632</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1702127036632</updated>
-    </task>
-    <task id="LOCAL-00011" summary="feat: 用户报名部分">
-      <option name="closed" value="true" />
-      <created>1702127614238</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1702127614238</updated>
-    </task>
-    <task id="LOCAL-00012" summary="feat: 更新数据库表结构">
-      <option name="closed" value="true" />
-      <created>1702128595607</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1702128595607</updated>
-    </task>
-    <task id="LOCAL-00013" summary="feat: 多种报名情况处理">
-      <option name="closed" value="true" />
-      <created>1702215726915</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1702215726915</updated>
-    </task>
-    <task id="LOCAL-00014" summary="feat: 添加用户信息字段">
-      <option name="closed" value="true" />
-      <created>1702220498405</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1702220498405</updated>
-    </task>
-    <task id="LOCAL-00015" summary="feat: 添加获取用户所在的队伍、队伍搜索接口">
-      <option name="closed" value="true" />
-      <created>1702227856891</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1702227856891</updated>
-    </task>
-    <task id="LOCAL-00016" summary="feat: 在用户信息接口中添加报名信息">
-      <option name="closed" value="true" />
-      <created>1702465502503</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1702465502503</updated>
-    </task>
-    <task id="LOCAL-00017" summary="feat: 添加group_status字段表示组队状态，简化组队判断逻辑">
-      <option name="closed" value="true" />
-      <created>1702468537999</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1702468537999</updated>
-    </task>
-    <task id="LOCAL-00018" summary="fix: 修复队员信息缺失问题">
-      <option name="closed" value="true" />
-      <created>1702480407149</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1702480407149</updated>
-    </task>
-    <task id="LOCAL-00019" summary="feat: 更新配置">
-      <option name="closed" value="true" />
-      <created>1702532889165</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1702532889165</updated>
-    </task>
-    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,24 +148,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="init" />
-    <MESSAGE value="用户模块搭建，接口限流配置" />
-    <MESSAGE value="feat: 用户模块搭建，接口限流配置" />
-    <MESSAGE value="fix: 修复lua脚本异常" />
-    <MESSAGE value="feat: 用户信息完善" />
-    <MESSAGE value="feat: 团队模块搭建" />
-    <MESSAGE value="feat: 完善组队信息" />
-    <MESSAGE value="feat: 完善登录接口" />
-    <MESSAGE value="feat: 用户报名部分" />
-    <MESSAGE value="feat: 更新数据库表结构" />
-    <MESSAGE value="feat: 多种报名情况处理" />
-    <MESSAGE value="feat: 添加用户信息字段" />
-    <MESSAGE value="feat: 添加获取用户所在的队伍、队伍搜索接口" />
-    <MESSAGE value="feat: 在用户信息接口中添加报名信息" />
-    <MESSAGE value="feat: 添加group_status字段表示组队状态，简化组队判断逻辑" />
-    <MESSAGE value="fix: 修复队员信息缺失问题" />
-    <MESSAGE value="feat: 更新配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 更新配置" />
+    <MESSAGE value="feat: 添加退出组队接口" />
+    <MESSAGE value="feat: 完善参数校验" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 完善参数校验" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

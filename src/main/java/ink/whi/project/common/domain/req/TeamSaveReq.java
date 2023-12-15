@@ -2,8 +2,10 @@ package ink.whi.project.common.domain.req;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -31,6 +33,7 @@ public class TeamSaveReq implements Serializable {
     /**
      * 队伍名称
      */
-    @NotNull
+    @NotBlank
+    @Size(min = 1, max = 30)
     private String name;
 }

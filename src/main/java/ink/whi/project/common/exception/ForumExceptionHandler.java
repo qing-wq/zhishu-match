@@ -12,7 +12,7 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +24,12 @@ import javax.servlet.http.HttpServletResponse;
 @RestControllerAdvice
 @Order(-100)
 public class ForumExceptionHandler {
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    @ResponseStatus(HttpStatus.PAYLOAD_TOO_LARGE)
+    public ResVo<Object> handleMaxUploadSizeExceeded(MaxUploadSizeExceededException ex) {
+        return ResVo.fail(StatusEnum.UNEXPECT_ERROR, "请上传小于1MB的文件");
+    }
 
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

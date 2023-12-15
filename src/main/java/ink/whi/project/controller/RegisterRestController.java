@@ -49,12 +49,10 @@ public class RegisterRestController {
      * @param userId
      * @return
      */
-    @Permission(role = UserRole.ADMIN)
-    @DeleteMapping(path = "status")
+//    @Permission(role = UserRole.ADMIN)
+    @GetMapping(path = "status")
     public ResVo<String> status(@RequestParam Long userId, @RequestParam Long competitionId) {
-        registerDao.lambdaUpdate().eq(RegisterDO::getUserId, userId)
-                .eq(RegisterDO::getCompetitionId, competitionId)
-                .remove();
+        competitionService.cancelRegister(userId, competitionId);
         return ResVo.ok("ok");
     }
 }

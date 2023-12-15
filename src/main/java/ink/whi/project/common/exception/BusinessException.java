@@ -14,8 +14,7 @@ public class BusinessException extends RuntimeException{
 
     @Serial
     private static final long serialVersionUID = 2904668513164732323L;
-    @Getter
-    private Status status;
+    private final Status status;
 
     public BusinessException(StatusEnum statusEnum, Object... args) {
         this.status = Status.newStatus(statusEnum, args);

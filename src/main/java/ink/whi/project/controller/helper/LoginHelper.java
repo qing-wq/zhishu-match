@@ -10,6 +10,7 @@ import ink.whi.project.common.utils.CodeGenerateUtil;
 import ink.whi.project.common.utils.EmailUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
@@ -40,9 +41,9 @@ public class LoginHelper {
      * 获取邮箱验证码
      *
      * @param email
-     * @return
      */
-    public String subscribe(String email) {
+    @Async
+    public void subscribe(String email) {
         String code = CodeGenerateUtil.genCode();
         verifyCodeCache.put(code, email);
 
@@ -54,7 +55,6 @@ public class LoginHelper {
         if (!success) {
             throw BusinessException.newInstance(StatusEnum.UNEXPECT_ERROR, "邮件发送失败");
         }
-        return code;
     }
 
     /**

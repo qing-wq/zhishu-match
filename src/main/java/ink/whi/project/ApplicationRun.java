@@ -7,8 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
+
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 @MapperScan(basePackages = "ink.whi.project.modules.**.repo")
 @EnableAspectJAutoProxy
+@EnableScheduling
 public class ApplicationRun implements WebMvcConfigurer {
 
     @Autowired
@@ -29,15 +32,6 @@ public class ApplicationRun implements WebMvcConfigurer {
         registry.addInterceptor(authInterceptor).addPathPatterns("/**")
                 .excludePathPatterns("/error");
     }
-
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/competition")
-//                .allowedOrigins("*")
-//                .allowedMethods("POST")
-//                .allowCredentials(true);
-//    }
-
 
 
     public static void main(String[] args) {

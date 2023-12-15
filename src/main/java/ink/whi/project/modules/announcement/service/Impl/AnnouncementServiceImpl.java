@@ -30,9 +30,6 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     @Autowired
     private AnnouncementDao announcementDao;
 
-    @Autowired
-    private TransactionTemplate transactionTemplate;
-
     @Override
     public Long post(AnnouncementReq req) {
         Announcement anno = AnnouncementConverter.toDo(req);
@@ -44,23 +41,21 @@ public class AnnouncementServiceImpl implements AnnouncementService {
             if (record == null) {
                 throw BusinessException.newInstance(StatusEnum.RECORDS_NOT_EXISTS, "记录不存在：" + anno.getId());
             }
-            updateAnno(anno);
+            announcementDao.updateById(anno);
             return anno.getId();
         }
     }
 
     private Long insertAnno(Announcement anno) {
+        // 生成默认摘要
         if (StringUtils.isBlank(anno.getSummary())) {
-            String summary = AnnouncementUtil.pickSummary(anno.getContent());
+            String summary = generateSummary(anno.getContent());
             anno.setSummary(summary);
         }
+
         anno.setStatus(PushStatusEnum.ONLINE.getCode());
         announcementDao.save(anno);
         return anno.getId();
-    }
-
-    private void updateAnno(Announcement anno) {
-        announcementDao.updateById(anno);
     }
 
     @Override
