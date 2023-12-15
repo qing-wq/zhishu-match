@@ -49,6 +49,8 @@ public class GlobalInitHelper {
                 if (user != null) {
                     reqInfo.setUserId(user.getUserId());
                     reqInfo.setUser(user);
+                    // 更新用户ip信息
+                    userService.updateIpInfo(user.getUserId(), reqInfo.getClientIp());
                 }
             }
         }

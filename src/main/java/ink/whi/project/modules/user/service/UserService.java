@@ -13,4 +13,6 @@ public interface UserService {
     BaseUserInfoDTO passwordLogin(String username, String password);
 
     Long saveUser(UserSaveReq req);
+
+    void updateIpInfo(Long user, String clientIp);
 }

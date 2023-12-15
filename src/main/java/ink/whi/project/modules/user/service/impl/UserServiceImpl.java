@@ -71,4 +71,10 @@ public class UserServiceImpl implements UserService {
         userDao.save(userInfo);
         return user.getId();
     }
+
+    @Override
+    public void updateIpInfo(Long userId, String clientIp) {
+        userDao.lambdaUpdate().eq(UserInfoDO::getUserId, userId)
+                .set(UserInfoDO::getIp, clientIp).update();
+    }
 }
