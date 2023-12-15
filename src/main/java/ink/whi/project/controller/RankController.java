@@ -65,19 +65,19 @@ public class RankController extends BaseRestController {
 
 
     @GetMapping
-    public ResVo<PageVo<RankUserDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
+    public ResVo<PageVo<RankTeamDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
                                            @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
                                             @RequestParam(name = "competitionId") Long competitionId){
-        List<RankUserDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
+        List<RankTeamDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
         Integer count = rankService.getRankWithUserInfoCount(competitionId);
-        PageVo<RankUserDTO> pageVo = PageVo.build(list, pageSize, page, count);
+        PageVo<RankTeamDTO> pageVo = PageVo.build(list, pageSize, page, count);
 
         return ResVo.ok(pageVo);
     }
 
     @Permission(role = UserRole.LOGIN)
     @PostMapping("/upload")
-    public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file) throws IOException {
+    public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file, @RequestParam Long competitionId) throws IOException {
 
         //限制次数
         int time = 0;
