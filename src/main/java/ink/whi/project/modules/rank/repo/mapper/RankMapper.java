@@ -1,9 +1,8 @@
 package ink.whi.project.modules.rank.repo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import ink.whi.project.common.domain.dto.RankUserDTO;
+import ink.whi.project.common.domain.dto.RankTeamDTO;
 import ink.whi.project.modules.rank.repo.entity.RankDO;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.session.RowBounds;
 
@@ -16,26 +15,26 @@ import java.util.List;
  */
 public interface RankMapper extends BaseMapper<RankDO> {
 
-    @Select("SELECT r.*, u.* FROM (" +
-            "  SELECT r.user_id, MAX(r.score) as score " +
+    @Select("SELECT r.*, t.* FROM (" +
+            "  SELECT r.team_id, MAX(r.score) as score " +
             "  FROM (" +
-            "    SELECT user_id, score, competition_id , `status`" +
+            "    SELECT team_id, score, competition_id , `status`" +
             "    FROM `rank` " +
             "    WHERE competition_id = #{competitionId} AND `status` = 'succeed'" +
             "  ) AS r " +
-            "  GROUP BY r.user_id" +
+            "  GROUP BY r.team_id" +
             ") AS r " +
-            "JOIN user_info u ON r.user_id = u.user_id " +
+            "JOIN team t ON r.team_id = t.id " +
             "ORDER BY score DESC")
-    List<RankUserDTO> getRankWithUserInfo(Long competitionId,  RowBounds rowBounds);
+    List<RankTeamDTO> getRankWithUserInfo(Long competitionId, RowBounds rowBounds);
 
     @Select("SELECT COUNT(*) FROM (" +
-            "  SELECT r.user_id " +
+            "  SELECT r.team_id " +
             "  FROM (" +
-            "    SELECT user_id, MAX(score) as score " +
+            "    SELECT team_id, MAX(score) as score " +
             "    FROM `rank` " +
             "    WHERE competition_id = #{competitionId} AND `status` = 'succeed' " +
-            "    GROUP BY user_id" +
+            "    GROUP BY team_id" +
             "  ) AS r" +
             ") AS r")
     Integer getRankWithUserInfoCount(Long competitionId);

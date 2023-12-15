@@ -17,6 +17,8 @@ import lombok.experimental.Accessors;
 @TableName("`rank`")
 public class RankDO extends BaseDO {
 
+    Long teamId;
+
     Long userId;
 
     @TableField(value = "`status`", exist = true)

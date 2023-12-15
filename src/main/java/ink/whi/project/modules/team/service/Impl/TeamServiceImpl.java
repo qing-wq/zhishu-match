@@ -47,7 +47,6 @@ public class TeamServiceImpl implements TeamService {
         Long competitionId = req.getCompetitionId();
 
         checkGrouped(competitionId, userId);
-
         TeamDO record = teamDao.queryByTeamName(competitionId, req.getName());
         if (record != null) {
             throw BusinessException.newInstance(StatusEnum.ILLEGAL_ARGUMENTS_MIXED, "队伍已存在");

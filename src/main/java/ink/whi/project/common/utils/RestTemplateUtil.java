@@ -14,6 +14,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URI;
 
 
@@ -68,16 +69,13 @@ public class RestTemplateUtil {
 
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("files", resource);
-
         RequestEntity<MultiValueMap<String, Object>> requestEntity = new RequestEntity<>(body, headers, HttpMethod.POST, URI.create(fileServiceUrl + "/upload"));
-
-        String[] responseEntity = restTemplate.postForObject(fileServiceUrl + "/upload", requestEntity, String[].class);
-
-        for (String s : responseEntity) {
-            log.info("s:{}", s  );
+        String[] responseEntity;
+        try{
+            responseEntity = restTemplate.postForObject(fileServiceUrl + "/upload", requestEntity, String[].class);
+        }catch (Exception e){
+            throw new BusinessException(StatusEnum.UNEXPECT_ERROR,"服务器异常，请联系管理员");
         }
-
-
         log.info("Response:{}", responseEntity);
 
         return responseEntity[0];

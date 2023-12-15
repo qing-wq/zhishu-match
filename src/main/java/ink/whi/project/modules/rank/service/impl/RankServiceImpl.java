@@ -1,6 +1,6 @@
 package ink.whi.project.modules.rank.service.impl;
 
-import ink.whi.project.common.domain.dto.RankUserDTO;
+import ink.whi.project.common.domain.dto.RankTeamDTO;
 import ink.whi.project.modules.rank.repo.entity.RankDO;
 import ink.whi.project.modules.rank.repo.mapper.RankMapper;
 import ink.whi.project.modules.rank.service.RankService;
@@ -22,7 +22,7 @@ public class RankServiceImpl implements RankService {
     RankMapper mapper;
 
     @Override
-    public List<RankUserDTO> getRankWithUserInfo(Long competitionId, Integer page, Integer pageSize) {
+    public List<RankTeamDTO> getRankWithUserInfo(Long competitionId, Integer page, Integer pageSize) {
         return mapper.getRankWithUserInfo(competitionId, new RowBounds((page - 1) * pageSize, pageSize));
     }
 
@@ -31,12 +31,13 @@ public class RankServiceImpl implements RankService {
         return mapper.getRankWithUserInfoCount(competitionId);
     }
 
-    public Integer insert(Long userId, Double score, Long competitionId){
+    public Integer insert(Long userId, Double score, Long competitionId, Long teamId){
         RankDO rankDO = new RankDO();
         rankDO.setScore(score)
                 .setStatus("succeed")
                 .setUserId(userId)
-                .setCompetitionId(competitionId);
+                .setCompetitionId(competitionId)
+                .setTeamId(teamId);
        return mapper.insert(rankDO);
     }
 }

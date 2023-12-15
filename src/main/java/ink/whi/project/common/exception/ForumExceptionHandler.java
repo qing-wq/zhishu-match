@@ -8,6 +8,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
 
 /**
  * @author: qing
@@ -31,10 +33,26 @@ public class ForumExceptionHandler {
         return ResVo.fail(StatusEnum.UNEXPECT_ERROR, "请上传小于1MB的文件");
     }
 
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResVo<String> handleConstraintValidationException(ConstraintViolationException ex) {
+        String errorMessage = "请求参数验证失败: " + ex.getMessage();
+        return ResVo.fail(StatusEnum.UNEXPECT_ERROR, errorMessage);
+    }
+
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResVo<String> handleValidationException(BindException ex) {
-        String errorMessage = "请求参数验证失败: " + ex.getFieldErrors().get(0).getDefaultMessage();
+        StringBuilder errorMessage = new StringBuilder("请求参数验证失败: ");
+        for (int i = 0; i < ex.getFieldErrors().size(); i++) {
+            String fieldError = ex.getFieldErrors().get(i).getDefaultMessage();
+            // 拼接到 errorMessage 中
+            errorMessage.append(fieldError);
+            // 如果不是最后一个 fieldError，则追加逗号
+            if (i < ex.getFieldErrors().size() - 1) {
+                errorMessage.append(", ");
+            }
+        }
         return ResVo.fail(StatusEnum.UNEXPECT_ERROR, errorMessage);
     }
 

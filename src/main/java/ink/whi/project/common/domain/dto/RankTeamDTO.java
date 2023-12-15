@@ -9,30 +9,24 @@ import lombok.Data;
  */
 
 @Data
-public class RankUserDTO {
+public class RankTeamDTO {
     /**
      * id
      */
     private Long id;
     /**
-     * 用户id
+     * 队伍名称
      */
-    private Long userId;
+    private String name;
     /**
      * 分数
      */
     private Double score;
     /**
-     * 用户名
+     * 队伍id
      */
-    private String userName;
-    /**
-     * 学号
-     */
-    private String studentId;
-    /**
-     * 头像
-     */
-    private String photo;
+    private Long teamId;
+
+
 
 }

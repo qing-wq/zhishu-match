@@ -1,6 +1,6 @@
 package ink.whi.project.modules.rank.service;
 
-import ink.whi.project.common.domain.dto.RankUserDTO;
+import ink.whi.project.common.domain.dto.RankTeamDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +13,10 @@ import java.util.List;
 @Service
 public interface RankService {
 
-    public List<RankUserDTO> getRankWithUserInfo(Long competitionId, Integer page, Integer pageSize);
+    public List<RankTeamDTO> getRankWithUserInfo(Long competitionId, Integer page, Integer pageSize);
 
     public Integer getRankWithUserInfoCount(Long competitionId);
 
-    public Integer insert(Long userId, Double score, Long competitionId);
+    public Integer insert(Long userId, Double score, Long competitionId,  Long teamId);
 
 }

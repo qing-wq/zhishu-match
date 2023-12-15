@@ -3,7 +3,8 @@ package ink.whi.project.controller;
 import ink.whi.project.common.annotition.permission.Permission;
 import ink.whi.project.common.annotition.permission.UserRole;
 import ink.whi.project.common.context.ReqInfoContext;
-import ink.whi.project.common.domain.dto.RankUserDTO;
+import ink.whi.project.common.domain.dto.RankTeamDTO;
+import ink.whi.project.common.domain.dto.TeamInfoDTO;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.vo.ResVo;
 import ink.whi.project.common.exception.BusinessException;
@@ -13,9 +14,11 @@ import ink.whi.project.common.rest_template.resp.EvaluateResp;
 import ink.whi.project.common.utils.RestTemplateUtil;
 import ink.whi.project.controller.base.BaseRestController;
 import ink.whi.project.modules.rank.service.RankService;
+import ink.whi.project.modules.team.service.TeamService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +31,7 @@ import java.util.List;
  * @Date: 2023/12/7
  */
 @Slf4j
+@Validated
 @RestController
 @RequestMapping("/rank")
 public class RankController extends BaseRestController {
@@ -37,6 +41,9 @@ public class RankController extends BaseRestController {
 
     @Autowired
     RestTemplateUtil restTemplateUtil;
+
+    @Autowired
+    TeamService teamService;
 
 
     private final RedisTemplate<String, String> redisTemplate;
@@ -57,30 +64,47 @@ public class RankController extends BaseRestController {
 
 
 
+//    @GetMapping
+//    public ResVo<PageVo<RankTeamDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
+//                                           @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
+//                                            @RequestParam(name = "competitionId") Long competitionId){
+//        List<RankTeamDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
+//        Integer count = rankService.getRankWithUserInfoCount(competitionId);
+//        PageVo<RankTeamDTO> pageVo = PageVo.build(list, pageSize, page, count);
+//
+//        return ResVo.ok(pageVo);
+//    }
+
     @GetMapping
-    public ResVo<PageVo<RankUserDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
+    public ResVo<PageVo<RankTeamDTO>> list(@RequestParam(name = "page",  required = false, defaultValue = "1") Integer page,
                                            @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
-                                            @RequestParam(name = "competitionId") Long competitionId){
-        List<RankUserDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
+                                           @RequestParam(name = "competitionId") Long competitionId){
+        List<RankTeamDTO> list = rankService.getRankWithUserInfo(competitionId, page, pageSize);
         Integer count = rankService.getRankWithUserInfoCount(competitionId);
-        PageVo<RankUserDTO> pageVo = PageVo.build(list, pageSize, page, count);
+        PageVo<RankTeamDTO> pageVo = PageVo.build(list, pageSize, page, count);
 
         return ResVo.ok(pageVo);
     }
 
     @Permission(role = UserRole.LOGIN)
     @PostMapping("/upload")
-    public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file) throws IOException {
+    public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file, @RequestParam Long competitionId) throws IOException {
 
         //限制次数
         int time = 0;
         Long userId = ReqInfoContext.getReqInfo().getUserId();
-        Integer valueByKey = getValueByKey(userId.toString());
+
+        TeamInfoDTO teamInfoDTO = teamService.queryTeamInfo(competitionId, userId);
+        if(teamInfoDTO == null)throw new BusinessException(StatusEnum.UNEXPECT_ERROR, "请先报名");
+
+        Integer valueByKey = getValueByKey(teamInfoDTO.getTeamId().toString());
+
         log.info("redis times:{}", valueByKey);
         if(valueByKey != null){
             time = valueByKey;
         }
-        if(time >= 5)throw new BusinessException(StatusEnum.UNEXPECT_ERROR,"上传次数超过5次！");
+
+        if(time >= 5)throw new BusinessException(StatusEnum.UNEXPECT_ERROR,"队伍上传次数超过5次！");
 
 
         String fileExtension = getFileExtension(file.getOriginalFilename());
@@ -93,7 +117,6 @@ public class RankController extends BaseRestController {
         String url = "http://10.60.98.106:7860";
         EvaluateReq req = new EvaluateReq(url, name, (int) file.getSize());
 
-
         EvaluateResp evaluate;
         try{
             evaluate = restTemplateUtil.evaluate(req);
@@ -104,7 +127,7 @@ public class RankController extends BaseRestController {
 
         Double score = Double.valueOf(evaluate.getData().get(0));
         // 往数据库中插入此评测记录
-        Integer insert = rankService.insert(userId, score, 1L);
+        Integer insert = rankService.insert(userId, score, 1L, teamInfoDTO.getTeamId());
 
         if(insert > 0){
             if(time == 0){
