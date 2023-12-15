@@ -26,6 +26,7 @@ public class ScheduleTask {
 
     @Scheduled(cron = "0 0 0 * * ?") // 每天晚上 00:00:00 执行
 //    @Scheduled(fixedRate = 10000)
+//    @Scheduled(cron = "0 0 1 * * ?")
     public void performScheduledTask() {
         log.warn("Scheduled task executed at {}", dateFormat.format(new Date()));
         cleanupKeysWithPrefix("NUM_OF_TIMES:");

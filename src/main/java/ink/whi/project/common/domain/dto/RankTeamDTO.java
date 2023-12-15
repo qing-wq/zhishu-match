@@ -26,6 +26,10 @@ public class RankTeamDTO {
      * 队伍id
      */
     private Long teamId;
+    /**
+     * 是否是自己队伍
+     */
+    private Boolean isSelf = false;
 
 
 

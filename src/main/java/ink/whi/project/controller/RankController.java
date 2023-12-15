@@ -63,7 +63,13 @@ public class RankController extends BaseRestController {
     }
 
 
-
+    /**
+     * 排行榜
+     * @param page
+     * @param pageSize
+     * @param competitionId
+     * @return
+     */
     @GetMapping
     public ResVo<PageVo<RankTeamDTO>> list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
                                            @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
@@ -72,22 +78,55 @@ public class RankController extends BaseRestController {
         Integer count = rankService.getRankWithUserInfoCount(competitionId);
         PageVo<RankTeamDTO> pageVo = PageVo.build(list, pageSize, page, count);
 
+        Long userId = ReqInfoContext.getReqInfo().getUserId();
+        if(userId == null){
+            return ResVo.ok(pageVo);
+        }
+
+        TeamInfoDTO teamInfoDTO = teamService.queryTeamInfo(competitionId, userId);
+        if(teamInfoDTO == null){
+            return ResVo.ok(pageVo);
+        }
+
+        for (int i = 0; i < pageVo.getList().size(); i++) {
+            RankTeamDTO rankTeamDTO = pageVo.getList().get(i);
+            if(rankTeamDTO.getTeamId().equals(teamInfoDTO.getTeamId()))rankTeamDTO.setIsSelf(true);
+        }
+
         return ResVo.ok(pageVo);
+    }
+
+    @Permission(role = UserRole.LOGIN)
+    @GetMapping("/times")
+    public ResVo<Integer> getTimes(@RequestParam Long competitionId){
+        Long userId = ReqInfoContext.getReqInfo().getUserId();
+        TeamInfoDTO teamInfoDTO = teamService.queryTeamInfo(competitionId, userId);
+        if(teamInfoDTO == null)throw new BusinessException(StatusEnum.UNEXPECT_ERROR, "请先组队");
+        Integer valueByKey = getValueByKey(teamInfoDTO.getTeamId().toString());
+        if(valueByKey != null){
+            log.info("times:{}", 5 - valueByKey);
+            return ResVo.ok(5 -valueByKey);
+        }else{
+            log.info("times:{}", 5);
+            return ResVo.ok(5);
+        }
+
     }
 
     @Permission(role = UserRole.LOGIN)
     @PostMapping("/upload")
     public ResVo<String> handleFileUpload(@RequestPart("file") MultipartFile file, @RequestParam Long competitionId) throws IOException {
+        log.info("competitionId:{}", competitionId);
 
         //限制次数
         int time = 0;
         Long userId = ReqInfoContext.getReqInfo().getUserId();
 
         TeamInfoDTO teamInfoDTO = teamService.queryTeamInfo(competitionId, userId);
-        if(teamInfoDTO == null)throw new BusinessException(StatusEnum.UNEXPECT_ERROR, "请先报名");
+        if(teamInfoDTO == null)throw new BusinessException(StatusEnum.UNEXPECT_ERROR, "请先组队");
 
         Integer valueByKey = getValueByKey(teamInfoDTO.getTeamId().toString());
-
+        log.info("redis key:{}", teamInfoDTO.getTeamId().toString());
         log.info("redis times:{}", valueByKey);
         if(valueByKey != null){
             time = valueByKey;
@@ -106,7 +145,6 @@ public class RankController extends BaseRestController {
         String url = "http://10.60.98.106:7860";
         EvaluateReq req = new EvaluateReq(url, name, (int) file.getSize());
 
-
         EvaluateResp evaluate;
         try{
             evaluate = restTemplateUtil.evaluate(req);
@@ -117,13 +155,13 @@ public class RankController extends BaseRestController {
 
         Double score = Double.valueOf(evaluate.getData().get(0));
         // 往数据库中插入此评测记录
-        Integer insert = rankService.insert(userId, score, 1L, teamInfoDTO.getTeamId());
+        Integer insert = rankService.insert(userId, score, competitionId, teamInfoDTO.getTeamId());
 
         if(insert > 0){
             if(time == 0){
-                saveValueByKey(String.valueOf(userId), 1L);
+                saveValueByKey(String.valueOf(teamInfoDTO.getTeamId()), 1L);
             }else{
-                incrementValue(String.valueOf(userId));
+                incrementValue(String.valueOf(teamInfoDTO.getTeamId()));
             }
             return ResVo.ok("本次测评的分数为：" + score);
         }else{
