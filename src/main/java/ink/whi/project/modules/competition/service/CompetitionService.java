@@ -3,6 +3,7 @@ package ink.whi.project.modules.competition.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.dto.CompetitionDTO;
+import ink.whi.project.common.domain.dto.StatisticsDTO;
 import ink.whi.project.common.domain.page.PageParam;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.req.CompetitionUpdReq;
@@ -42,4 +43,6 @@ public interface CompetitionService extends IService<CompetitionDO> {
     GroupStatusEnum queryUserGroupStatus(Long competitionId, Long userId);
 
     void cancelRegister(Long userId, Long competitionId);
+
+    List<StatisticsDTO> getStatistic();
 }

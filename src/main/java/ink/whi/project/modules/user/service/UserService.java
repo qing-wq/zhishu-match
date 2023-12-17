@@ -15,4 +15,6 @@ public interface UserService {
     Long saveUser(UserSaveReq req);
 
     void updateIpInfo(Long user, String clientIp);
+
+    Long countTotal();
 }

@@ -1,10 +1,10 @@
 package ink.whi.project.modules.competition.service.Impl;
 
-import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ink.whi.project.common.domain.base.BaseDO;
 import ink.whi.project.common.domain.dto.BaseUserInfoDTO;
 import ink.whi.project.common.domain.dto.CompetitionDTO;
+import ink.whi.project.common.domain.dto.StatisticsDTO;
 import ink.whi.project.common.domain.page.PageParam;
 import ink.whi.project.common.domain.page.PageVo;
 import ink.whi.project.common.domain.req.CompetitionUpdReq;
@@ -19,6 +19,9 @@ import ink.whi.project.modules.competition.repo.entity.CompetitionDO;
 import ink.whi.project.modules.competition.repo.entity.RegisterDO;
 import ink.whi.project.modules.competition.repo.mapper.CompetitionMapper;
 import ink.whi.project.modules.competition.service.CompetitionService;
+import ink.whi.project.modules.team.repo.dao.TeamDao;
+import ink.whi.project.modules.team.repo.entity.TeamDO;
+import ink.whi.project.modules.team.service.TeamService;
 import ink.whi.project.modules.user.converter.UserConverter;
 import ink.whi.project.modules.user.repo.dao.UserDao;
 import ink.whi.project.modules.user.repo.entity.UserInfoDO;
@@ -28,9 +31,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @Description
@@ -48,6 +49,9 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private TeamDao teamDao;
 
     /**
      * 分页查询
@@ -147,6 +151,9 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
     @Override
     public List<BaseUserInfoDTO> queryCompetitionUser(Long competitionId) {
         List<Long> userIds = registerDao.listUserByCompetitionId(competitionId);
+        if (userIds.isEmpty()) {
+            return Collections.emptyList();
+        }
         List<UserInfoDO> users = userDao.listByUserIds(userIds);
         return UserConverter.toDtoList(users);
     }
@@ -195,5 +202,28 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
         registerDao.lambdaUpdate().eq(RegisterDO::getUserId, userId)
                 .eq(RegisterDO::getCompetitionId, competitionId)
                 .remove();
+    }
+
+    @Override
+    public List<StatisticsDTO> getStatistic() {
+        ArrayList<StatisticsDTO> result = new ArrayList<>();
+
+        List<CompetitionDO> competitions = lambdaQuery().list();
+        competitions.forEach(s -> {
+            StatisticsDTO dto = new StatisticsDTO();
+            dto.setCompetitionId(s.getId());
+            dto.setCompetitionName(s.getName());
+
+            // 报名人数
+            Long userCount = registerDao.lambdaQuery().eq(RegisterDO::getCompetitionId, s.getId()).count();
+            dto.setUserCount(userCount);
+
+            // 队伍数
+            Long teamCount = teamDao.lambdaQuery().eq(TeamDO::getCompetitionId, s.getId()).count();
+            dto.setTeamCount(teamCount);
+            result.add(dto);
+        });
+
+        return result;
     }
 }

@@ -88,9 +88,8 @@ public class RankController extends BaseRestController {
             return ResVo.ok(pageVo);
         }
 
-        for (int i = 0; i < pageVo.getList().size(); i++) {
-            RankTeamDTO rankTeamDTO = pageVo.getList().get(i);
-            if(rankTeamDTO.getTeamId().equals(teamInfoDTO.getTeamId()))rankTeamDTO.setIsSelf(true);
+        for (RankTeamDTO rankTeamDTO : list) {
+            if (rankTeamDTO.getTeamId().equals(teamInfoDTO.getTeamId())) rankTeamDTO.setIsSelf(true);
         }
 
         return ResVo.ok(pageVo);

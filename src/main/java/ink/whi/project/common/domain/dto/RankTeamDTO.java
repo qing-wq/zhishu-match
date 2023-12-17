@@ -30,7 +30,4 @@ public class RankTeamDTO {
      * 是否是自己队伍
      */
     private Boolean isSelf = false;
-
-
-
 }

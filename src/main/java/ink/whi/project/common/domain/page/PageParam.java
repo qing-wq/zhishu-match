@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class PageParam {
 
     public static final Long DEFAULT_PAGE_NUM = 1L;
-    public static final Long DEFAULT_PAGE_SIZE = 10L;
+    public static final Long DEFAULT_PAGE_SIZE = 20L;
 
     public static final Long TOP_PAGE_SIZE = 4L;
 

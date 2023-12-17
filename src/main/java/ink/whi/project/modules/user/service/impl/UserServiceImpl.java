@@ -77,4 +77,9 @@ public class UserServiceImpl implements UserService {
         userDao.lambdaUpdate().eq(UserInfoDO::getUserId, userId)
                 .set(UserInfoDO::getIp, clientIp).update();
     }
+
+    @Override
+    public Long countTotal() {
+        return userDao.lambdaQuery().count();
+    }
 }
