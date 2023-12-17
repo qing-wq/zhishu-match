@@ -1,0 +1,18 @@
+2023年12月17日 SELECT id,name,description,type,max_member,start_time,end_time,signup_deadline,deleted,create_time,update_time FROM competition cost: 2
+
+2023年12月17日 SELECT COUNT( * ) FROM register WHERE (competition_id = 1); cost: 1
+
+2023年12月17日 SELECT COUNT( * ) FROM team WHERE (competition_id = 1); cost: 1
+
+2023年12月17日 SELECT COUNT( * ) FROM register WHERE (competition_id = 2); cost: 1
+
+2023年12月17日 SELECT COUNT( * ) FROM team WHERE (competition_id = 2); cost: 0
+
+2023年12月17日 SELECT COUNT( * ) FROM register WHERE (competition_id = 3); cost: 0
+
+2023年12月17日 SELECT COUNT( * ) FROM team WHERE (competition_id = 3); cost: 0
+
+2023年12月17日 SELECT COUNT( * ) FROM register WHERE (competition_id = 4); cost: 0
+
+2023年12月17日 SELECT COUNT( * ) FROM team WHERE (competition_id = 4); cost: 0
+
