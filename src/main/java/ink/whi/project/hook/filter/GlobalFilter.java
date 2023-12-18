@@ -113,6 +113,8 @@ public class GlobalFilter implements Filter {
                 || request.getRequestURI().endsWith("js")
                 || request.getRequestURI().endsWith("png")
                 || request.getRequestURI().endsWith("ico")
-                || request.getRequestURI().endsWith("svg");
+                || request.getRequestURI().endsWith("svg")
+                // 忽略actuator端点
+                || request.getRequestURI().equalsIgnoreCase("/actuator/prometheus");
     }
 }
